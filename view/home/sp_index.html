@@ -1,0 +1,33 @@
+{% extends "./inc_base.html" %}
+{% block content %}
+    
+<div class="ppb_wrapper" style="padding-top: 150px !important;">
+    <div  class="container">
+        <!--添加广告位-->
+        {{11|show_ad("code")|safe}}
+        <div class="row">
+        <div class="col-md-2 col-sm-2">
+            {%column data="column",pid=breadcrumb[0].id%}
+            {%if column %}
+            <div class="list-group">
+                {%for val in column%}
+                <a href="{{val.url}}" class="list-group-item {%if val.id == category.id %}active{%endif%}">{{val.name}}</a>
+                {%endfor%}
+            </div>
+            {%endif%}
+        </div>
+        <div class="col-md-10 col-sm-10">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">{{category.title}}</h2>
+                </div>
+                <div class="panel-body">
+                    <div id="contentcmswing">{{category.sp_html_pc|safe}}</div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

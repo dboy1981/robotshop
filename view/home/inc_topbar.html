@@ -1,0 +1,44 @@
+<!-- Begin top bar -->
+<div class="above_top_bar">
+		<div class="page_content_wrapper">
+			<div class="social_wrapper">
+				<ul>
+						{% if controller.is_login %}
+						<li class="text-welcome ">您好, <strong>{{controller.user.username}}</strong></li>
+						<li>
+							<a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i class="fa fa-user hidden-xs"></i> 会员中心</a>
+							<ul class="dropdown-menu pull-right">
+								<li><a tabindex="-1" href="/center/index"><i class="fa fa-bank"></i>我的中心</a></li>
+								<li class="divider"></li>
+								{#
+								<li><a tabindex="-1" href="/center/order"><i class="fa fa fa-reorder"></i> 我的订单</a></li>
+								<li><a tabindex="-1" href="#"><i class="fa fa-bookmark"></i> 我的关注</a></li>
+								<li><a tabindex="-1" href="/center/account"><i class="fa fa-cny"></i> 账号金额</a></li>
+								<li><a tabindex="-1" href="#"><i class="fa fa-money"></i> 优惠券</a></li>
+								#}
+								<li><a tabindex="-1" href="/center/seting"><i class="fa fa-gear"></i> 个人设置</a></li>
+								<li class="divider"></li>
+								<li><a tabindex="-1" href="/center/public/logout"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+							</ul>
+						</li>
+                        {% else %}
+                        <li><a href="/center/public/login" data-toggle="ajaxModal"><i class="fa fa-sign-in"></i> 登录</a></li>
+						<li><a href="/center/public/register"><i class="fa fa-thumbs-o-up"></i> 注册</a></li>
+                        {% endif %}
+				</ul>
+			</div>
+			<div class="top_contact_info">
+				<div class="company_address">
+					<div id="top_contact_address"><span class="ti-location-pin"></span>东800大街184号</div>
+				</div>
+				<div>
+					<div id="top_contact_number"><a href="tel:1.800.456.6743"><span class="ti-mobile"></span>1.800.456.6743</a></div>
+				</div>
+				<div>
+					<div id="top_contact_hours"><span class="ti-alarm-clock"></span>周一 至 周五 09.00 - 17.00</div>
+				</div>
+			</div>
+			<br class="clear" />
+		</div>
+	</div>
+	<!-- End top bar -->

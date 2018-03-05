@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html data-menu="leftalign">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="renderer" content="webkit" />
+	<title>{{controller.meta_title}}| {{config.setup.WEB_SITE_TITLE}}</title>
+	<meta name="keywords" content="{{controller.keywords}}" />
+	<meta name="description" content="{{controller.description}}" />
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	<!-- mobile settings -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telephone=no">
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+
+	<!-- WEB FONTS : use %7C instead of | (pipe) -->
+	<!--<link href="http://fonts.useso.com/css?family=Open+Sans:300,400%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />-->
+
+	<link rel='stylesheet' href='/static/assets/styles/screen.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='/static/assets/styles/leftalignmenu.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='/static/assets/styles/font-awesome.min.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='/static/assets/styles/themify-icons.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='/static/assets/styles/kirki-styles.css' type='text/css' media='all' />
+	<link rel='stylesheet' href='/static/assets/styles/grid.css' type='text/css' media='all' />
+	
+	{% block style %}{% endblock %}
+	<!--页面头部css钩子加载-->
+	{% if pagehook%}
+	{%for field in pagehook.fields%}
+	{%if pagehook.editor == '1'%}
+	{{HOOKS@pageHeader@1[field.name]|safe}}
+	{%elif pagehook.editor == '2_1'%}
+	{{HOOKS@pageHeader@2_1[field.name]|safe}}
+	{%elif pagehook.editor == '2_2'%}
+	{{HOOKS@pageHeader@2_2[field.name]|safe}}
+	{%elif pagehook.editor == '3'%}
+	{{HOOKS@pageHeader@3[field.name]|safe}}
+	{%else%}
+	{{HOOKS@pageHeader[field.name]|safe}}
+	{%endif%}
+	{%endfor%}
+	{%endif%}
+	<!--/页面头部css钩子加载结束-->
+	{% macro content(pagehook) %}
+	<!--内容钩子加载-->
+	{% if pagehook%}
+	{%for field in pagehook.fields%}
+	{%if pagehook.editor == '1'%}
+	{{HOOKS@pageContent@1[field.name]|safe}}
+	{%elif pagehook.editor == '2_1'%}
+	{{HOOKS@pageContent@2_1[field.name]|safe}}
+	{%elif pagehook.editor == '2_2'%}
+	{{HOOKS@pageContent@2_2[field.name]|safe}}
+	{%elif pagehook.editor == '3'%}
+	{{HOOKS@pageContent@3[field.name]|safe}}
+	{%else%}
+	{{HOOKS@pageContent[field.name]|safe}}
+	{%endif%}
+	{%endfor%}
+	{%endif%}
+	<!--/内容钩子加载结束-->
+	{% endmacro %}
+	{%if config.setup.WEB_TONGJI%}
+	<!--统计代码-->
+	{{config.setup.WEB_TONGJI|safe}}
+	<!--统计-->
+	{%endif%}
+</head>
+
+<!--
+		AVAILABLE BODY CLASSES:
+
+		smoothscroll 			= create a browser smooth scroll
+		enable-animation		= enable WOW animations
+
+		bg-grey					= grey background
+		grain-grey				= grey grain background
+		grain-blue				= blue grain background
+		grain-green				= green grain background
+		grain-blue				= blue grain background
+		grain-orange			= orange grain background
+		grain-yellow			= yellow grain background
+
+		boxed 					= boxed layout
+		pattern1 ... patern11	= pattern background
+		menu-vertical-hide		= hidden, open on click
+
+		BACKGROUND IMAGE [together with .boxed class]
+		data-background="assets/images/boxed_background/1.jpg"
+	-->
+
+{#<body class="smoothscroll enable-animation bg-grey">#}
+	<body class="home page-template-default page page-id-3075 ppb_enable">
+
+	<!-- SLIDE TOP -->
+	{% include "./inc_slidetop.html" %}
+	<!-- /SLIDE TOP -->
+
+
+	<!-- wrapper -->
+	<div id="wrapper" class="hasbg transparent">
+		<div class="header_style_wrapper">
+			<!-- Top Bar -->
+			{% include "./inc_topbar.html" %}
+			<!-- /Top Bar -->
+
+			<!--HEADER-->
+			{% include "./inc_header.html" %}
+			<!--/HEADER-->
+		</div>
+		<!-- REVOLUTION SLIDER -->
+		{% block content %}{% endblock %}
+		<!-- FOOTER -->
+		<div id="footer" class=" ppb_wrapper">
+				<ul class="sidebar_widget three">
+					<li id="text-2" class="widget widget_text">
+						<h2 class="widgettitle">关于我们</h2>
+						<div class="textwidget">
+							<p>您身边的智能机器人专家。准备好，和我们一起体验机器人智能之旅！ </p>
+							<p><img src="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/themes/grandcarrental/images/logo@2x_white.png" alt="" width="175" height="24"></p>
+						</div>
+					</li>
+					<li id="text-3" class="widget widget_text">
+						<h2 class="widgettitle">联系我们</h2>
+						<div class="textwidget">
+							<p><span class="ti-mobile" style="margin-right:10px;"></span>1-567-124-44227</p>
+							<p><span class="ti-location-pin" style="margin-right:10px;"></span>184大街东Perl Perl Habour 8007</p>
+							<p><span class="ti-alarm-clock" style="margin-right:10px;"></span>周一 至 周六 8:00至18:00 周日休息</p>
+							<div style="margin-top:20px;">
+								<div class="social_wrapper shortcode dark ">
+									<ul>
+										<li class="facebook"><a target="_blank" title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+										<li class="twitter"><a target="_blank" title="Twitter" href="https://twitter.com/#"><i class="fa fa-twitter"></i></a></li>
+										<li class="youtube"><a target="_blank" title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
+										<li class="pinterest"><a target="_blank" title="Pinterest" href="https://pinterest.com/#"><i class="fa fa-pinterest"></i></a></li>
+										<li class="instagram"><a target="_blank" title="Instagram" href="https://instagram.com/theplanetd"><i class="fa fa-instagram"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li id="mc4wp_form_widget-5" class="widget widget_mc4wp_form_widget">
+						<h2 class="widgettitle">每日优惠</h2>
+						<script type="text/javascript">
+						(function() {
+							if (!window.mc4wp) {
+								window.mc4wp = {
+									listeners: [],
+									forms: {
+										on: function(event, callback) {
+											window.mc4wp.listeners.push({
+												event: event,
+												callback: callback
+											});
+										}
+									}
+								}
+							}
+						})();
+						</script>
+						<!-- MailChimp for WordPress v4.1.14 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+						<form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-27" method="post" data-id="27" data-name="Newsletter">
+							<div class="mc4wp-form-fields">不要错过任何东西！注册以接收每日优惠
+								<input type="email" name="EMAIL" placeholder="Your Email Address" required />
+								<br/>
+								<input type="submit" value="订阅" />
+								<label style="display: none !important;">Leave this field empty if you're human:
+									<input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" />
+								</label>
+								<input type="hidden" name="_mc4wp_timestamp" value="1519276101" />
+								<input type="hidden" name="_mc4wp_form_id" value="27" />
+								<input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
+							</div>
+							<div class="mc4wp-response"></div>
+						</form>
+						<!-- / MailChimp for WordPress Plugin -->
+					</li>
+				</ul>
+			</div>
+			<div class="footer_bar  ppb_wrapper ">
+				<div class="footer_bar_wrapper ">
+					<div class="menu-footer-menu-container">
+						<ul id="footer_menu" class="footer_nav">
+							<li id="menu-item-3138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3138"><a href="/about.html">关于我们</a></li>
+							<li id="menu-item-3134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3134"><a href="/disclaimer.html">免责声明</a></li>
+							<li id="menu-item-3135" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3135"><a href="/licence.html">授权协议</a></li>
+							<li id="menu-item-3137" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3137"><a href="/help.html">常见问题</a></li>
+							<li id="menu-item-3136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3136"><a href="/contact.html">联系我们</a></li>
+						</ul>
+					</div>
+					<div id="copyright">&copy; 2015 - <script>document.write(new Date().getFullYear())</script> zujizhi.com  版权所有 <!--{{config.setup.WEB_SITE_TITLE}}--> <a href="http://www.miitbeian.gov.cn/" target="_blank">{{config.setup.WEB_SITE_ICP}}</a></div>
+					<br class="clear" />
+				</div>
+			</div>
+
+	</div>
+	<!-- /wrapper -->
+
+	<!-- SCROLL TO TOP -->
+	<a href="#" id="toTop" class="ti-angle-double-up"></a>
+
+
+	<!-- JAVASCRIPT FILES -->
+
+	<script type="text/javascript" src="/static/assets/plugins/jquery/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		var plugin_path = '/static/assets/plugins/';
+		$(function () {
+			if($("#topMain.nav-pills>li.active>a")){
+				var w = $("#topMain.nav-pills>li.active>a").width();
+				$("#topMain.nav-pills>li.active>.aline").width(w);
+			}
+
+		})
+	</script>
+	<script type="text/javascript" src="/static/assets/js/scripts.min.js"></script>
+
+	<script type='text/javascript' src='/static/assets/js/ilightbox.packed.js'></script>
+  <script type='text/javascript' src='/static/assets/js/waypoints.min.js'></script>
+  <script type='text/javascript' src='/static/assets/js/jquery.isotope.js'></script>
+  <script type='text/javascript' src='/static/assets/js/jarallax.js'></script>
+  <script type='text/javascript' src='/static/assets/js/custom_plugins.js'></script>
+  <script type='text/javascript' src='/static/assets/js/custom.js'></script>
+  <script type='text/javascript' src='/static/assets/js/jarallax-video.js'></script>
+  <!--[if lte IE 9]>
+<script type='text/javascript' src='./js/placeholders.min.js'></script>
+<![endif]-->
+
+{#
+	<!-- REVOLUTION SLIDER -->
+	<script type="text/javascript" src="/static/assets/plugins/slider.revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="/static/assets/plugins/slider.revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script type="text/javascript" src="/static/assets/js/view/demo.revolution_slider.min.js"></script>
+	#}
+	{% block script %}{% endblock %}
+	<!--页面footer钩子，一般用于加载插件JS文件和JS代码-->
+	{% if pagehook%}
+	{%for field in pagehook.fields%}
+	{%if pagehook.editor == '1'%}
+	{{HOOKS@pageFooter@1[field.name]|safe}}
+	{%elif pagehook.editor == '2_1'%}
+	{{HOOKS@pageFooter@2_1[field.name]|safe}}
+	{%elif pagehook.editor == '2_2'%}
+	{{HOOKS@pageFooter@2_2[field.name]|safe}}
+	{%elif pagehook.editor == '3'%}
+	{{HOOKS@pageFooter@3[field.name]|safe}}
+	{%else%}
+	{{HOOKS@pageFooter[field.name]|safe}}
+	{%endif%}
+	{%endfor%}
+	{%endif%}
+	<!--/页面footer钩子，一般用于加载插件JS文件和JS代码-->
+    <!--[if lte IE 9]>
+    <script src="/static/assets/plugins/jquery-fly/requestAnimationFrame.min.js"></script>
+    <![endif]-->
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+{% extends "./inc_base.html" %}
+
+{% block content %}
+{%column data="column",pid=45%}
+<div class="ppb_wrapper">
+		<div class="one withsmallpadding ppb_car_search_background parallax withbg " style="padding-top: 150px !important;text-align:center;height:800px;background-image:url(/static/assets/images/IMG_3496bfree.jpg);background-position: center center;color:#ffffff;">
+			<div class="overlay_background" style="background:#000000;background:rgb(0,0,0,0.2);background:rgba(0,0,0,0.2);"></div>
+			<div class="center_wrapper">
+				<div class="inner_content">
+					<div class="standard_wrapper">
+						<h2 class="ppb_title" style="color:#ffffff;">不仅仅是机器，更是智慧</h2>
+						<div class="page_tagline" style="color:#ffffff;">寻找最好的智能机器人</div>
+						<form class="car_search_form" method="get" action="http://themes.themegoods.com/grandcarrental/demo/car-list-right-sidebar/">
+							<div class="car_search_wrapper">
+								<div class="one_fourth themeborder">
+									<select id="brand" name="brand">
+										<option value="">品牌</option>
+										{%for val in typevar%}
+										{%if val.optionid == 26%}
+										{%for r in val.rules%}
+										<option value="{{r.id}}">{{r.name}}</option>
+										{%endfor%}
+										{%endif%}
+										{%endfor%}
+									</select>
+									<span class="ti-angle-down"></span>
+								</div>
+								<div class="one_fourth themeborder">
+									<select id="type" name="type">
+										<option value="">类型</option>
+										{%for val in column%}
+										<option value="{{val.id}}">{{val.name}}</option>
+										{%endfor%}
+									</select>
+									<span class="ti-angle-down"></span>
+								</div>
+								<div class="one_fourth themeborder">
+									<select id="sort_by" name="sort_by">
+										<option value="price_desc">价格由高到低</option>
+										<option value="price_asc">价格由低到高</option>
+										<option value="popular">按销量排序</option>
+										<option value="review">按评分排序</option>
+									</select>
+									<span class="ti-exchange-vertical"></span>
+								</div>
+								<div class="one_fourth last themeborder">
+									<input id="car_search_btn" type="submit" class="button" value="搜索" />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="one withsmallpadding ppb_header " style="text-align:center;padding:60px 0 60px 0;">
+			<div class="standard_wrapper">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div style="margin:auto;width:100%">
+							<h2 class="ppb_title" style="">高端机器人租赁和销售服务</h2>
+							<div class="page_tagline" style="">我们提供专业的机器人租售服务并提供先进的解决方案</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ppb_car_brand_grid one nopadding ">
+			<div class="page_content_wrapper page_main_content sidebar_content full_width fixed_column">
+				<div class="standard_wrapper">
+					<div id="15192761011330421820" class="portfolio_filter_wrapper gallery grid portrait three_cols" data-columns="3">						
+						{%for val in column%}
+						<div class="element grid classic3_cols animated{{loop.index}}">
+							<div class="one_third gallery3 grid static filterable portfolio_type themeborder" style="background-image:url({{val.icon|get_pic('m=1')}});"><a class="car_image" href="{{val.url}}"></a>
+								<div class="portfolio_info_wrapper">
+									<h3>{{val.name}}</h3></div>
+							</div>
+						</div>
+						{%endfor%}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="one withsmallpadding ppb_header " style="padding-top: 40px !important;text-align:center;padding:60px 0 60px 0;">
+			<div class="standard_wrapper">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div style="margin:auto;width:100%">
+							<h2 class="ppb_title" style="">企业智能化解决方案</h2>
+							<div class="page_tagline" style="">我们为企业定制基于智能机器人的解决方案</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="ppb_car_type_grid one nopadding " style="margin-bottom:60px;">
+			<div class="page_content_wrapper page_main_content sidebar_content full_width fixed_column">
+				<div class="standard_wrapper">
+					<div id="15192761011052812585" class="portfolio_filter_wrapper gallery grid portrait three_cols" data-columns="3">
+							{%column data="column",pid=129%}
+							{%if column %}
+								{%for val in column%}
+									<div class="element grid classic3_cols animated1">
+										<div class="one_third gallery3 grid static filterable portfolio_type themeborder" style="background-image:url({{val.icon|get_pic('m=1')}});"><a class="car_image" href="{{val.url}}"></a>
+											<div class="portfolio_info_wrapper">
+												<h3>{{val.name}}</h3></div>
+										</div>
+									</div>
+								{%endfor%}
+							{%endif%}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="one withsmallpadding ppb_header_youtube withbg parallax" data-jarallax-video="https://www.youtube.com/watch?v=D3tv6J7tk0k" style="text-align:center;padding:215px 0 215px 0;color:#ffffff;">
+			<div class="overlay_background" style="background:rgba(0,0,0,0.3);"></div>
+			<div class="standard_wrapper">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div style="margin:auto;width:100%">
+							<h2 class="ppb_title" style="color:#ffffff;">我们的团队，你的团队！</h2>
+							<div class="page_tagline" style="color:#ffffff;">我们知道不同之处在于细节，这就是为什么我们的机器人租售服务在
+								<br /> 同行业中突出其品质和口感，为您提供独特的体验</div>
+							<div class="ppb_header_content">
+								<p><span style="font-size: 32px;">立即致电（54）- 344-4533-4</span></p>
+								<p><a class="button" href="http://themes.themegoods.com/grandcarrental/demo/contact-us/">寻求报价</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="one withsmallpadding ppb_header " style="text-align:center;padding:60px 0 60px 0;background-color:#5856d6;color:#ffffff;">
+			<div class="standard_wrapper">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div style="margin:auto;width:100%">
+							<h2 class="ppb_title" style="color:#ffffff;">为什么选择我们</h2>
+							<div class="page_tagline" style="color:#ffffff;">探索发现我们一流的智能机器人租售服务</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="one withsmallpadding ppb_text" style="padding-top:0 !important;text-align:center;padding:10px 0 10px 0;background-color:#5856d6;color:#ffffff !important;">
+			<div class="standard_wrapper">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div style="margin:auto;width:100%">
+							</p>
+							<div class="one_third " style=""><span class="ti-car" style="display: block; font-size: 50px; margin-bottom: 20px;"> </span></p>
+								<h4 style="color: #fff;">最丰富的品牌</h4>
+								<p>我们帮您寻找全世界最优秀的机器人产品，必将有属于你的那一款。</p>
+							</div>
+							<div class="one_third " style="">
+								<span class="ti-face-smile" style="display: block; font-size: 50px; margin-bottom: 20px;"> </span></p>
+								<h4 style="color: #fff;">最优惠价格保证</h4>
+								<p>与供货商亲密的合作伙伴关系，让我们可以提供最优惠的价格给您。</p>
+							</div>
+							<div class="one_third last " style=""><span class="ti-heart" style="display: block; font-size: 50px; margin-bottom: 20px;"> </span></p>
+								<h4 style="color: #fff;">令人满意的客户支持</h4>
+								<p>强大的客户服务团队是我们的骄傲，为您提供满意的服务是我们的责任。</p>
+							</div>
+							<p>
+								<br class="clear" />
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="one withsmallpadding ppb_header " style="text-align:center;padding:60px 0 60px 0;">
+			<div class="standard_wrapper">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div style="margin:auto;width:100%">
+							<h2 class="ppb_title" style="">发现</h2>
+							<div class="page_tagline" style="">探索来自世界各地的机器人新闻</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="standard_wrapper">
+			<div class="ppb_blog_grid one nopadding" style="padding:0px 0 0px 0;margin-bottom:40px;">
+				<div class="page_content_wrapper">
+					<div class="inner">
+						<div class="inner_wrapper">
+							<div class="blog_grid_wrapper sidebar_content full_width ppb_blog_posts">
+									{% topic data = "slider",limit= "3",position='2',issub="1"%}
+									{%for val in slider%}
+									{%if val.model_id==4%} {% set pic = val.pics|strToArray|first%}{%else%}{%set pic = val.cover_id%}{%endif%}
+								<div class="post type-post hentry status-publish ">
+									<div class="post_wrapper grid_layout">
+										<div class="post_img small static">
+											<a href="{{val.name|get_url(val.id)}}">
+								<img src="{{pic|get_pic('m=1,w=346,h=229')}}" alt="{{val.name}}" class=""/>
+									</a>
+										</div>
+										<div class="post_header_wrapper">
+											<div class="post_header grid">
+												<div class="post_detail single_post">
+													<span class="post_info_date">
+						<a href="{{val.name|get_url(val.id)}}" title="{{val.name}}">2018年1月12日</a>
+					</span>
+												</div>
+												<h6><a href="{{val.name|get_url(val.id)}}" title="{{val.name}}">{{val.name}}</a></h6>
+											</div>
+											<p>{{val.title|truncate(20, true, "")|insert_flg("<br>",10)|safe}}
+												<div class="post_button_wrapper">
+													<a class="readmore" href="{{val.name|get_url(val.id)}}">阅读更多<span class="ti-angle-right"></span></a>
+												</div>
+										</div>
+									</div>
+								</div>
+								{%endfor%}
+								
+								<br class="clear" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
+{%block script%}
+
+{%endblock%}
