@@ -22,6 +22,14 @@ module.exports = class extends Home {
     }
   }
 
+  rndNumber(len, ary=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
+    var rnd = '';
+    for(var i = 0; i < len; i++){
+      rnd += ary[Math.round(Math.random() * (ary.length - 1))];
+    }
+    return rnd;
+  }
+
   async getTypevar(sortid){
     const typevar = await this.model('typevar').where({sortid: sortid}).order('displayorder ASC').select();
     // console.log(typevar,sortid);

@@ -1,67 +1,86 @@
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-									<button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
-									<h4 id="myModalLabel" class="modal-title">用户登录</h4>
-								</div>
-        <div class="modal-body wrapper-lg">
-            <div class="row">
-                <div class="col-sm-7 b-r">
-                    <!--<h3 class="m-t-none m-b">已有账号</h3>
-                    <p>Sign in to meet your friends.</p>-->
+{% extends "./inc/base.html" %}
+{% block style%}
+<link rel='stylesheet' href='/static/assets/css/styles.css' type='text/css' media='all' />
+ <link rel='stylesheet' href='/static/assets/css/woocommerce-layout.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='/static/assets/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)' />
+  <link rel='stylesheet' id='woocommerce-general-css' href='/static/assets/css/woocommerce.css' type='text/css' media='all' />
+{% endblock %}
+{% block content %}
+
+<div id="page_caption" class="hasbg parallax  withtopbar  " style="height:300px;background-image:url(/static/assets/images/IMG_3496bfree.jpg);">
+	<div class="page_title_wrapper">
+		<div class="page_title_inner">
+			<div class="page_title_content">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Begin content -->
+<div class="one ppb_text woocommerce-cart">
+        <div class="standard_wrapper">
+          <div class="page_content_wrapper">
+            <div class="inner">
+              <div class="login-form-box">
+                <div class="one_third">
+                  <div class="login-left">
+                    <h3 class="login-tips">用户登录</h3>
                     {%if HOOK@loginView %}
                     {{HOOK@loginView|safe}}
                     {%else%}
-                    <form role="form" class="sky-form" id="login" method="post">
-
-                        <div class="form-group">
-                            <label>账号</label>
-
-                            <input type="text" name="username" class="form-control" placeholder="邮箱/手机号/昵称" required="">
-
+                    <form role="form" class="wpcf7-form" method="post">
+                      <p class="wpcf7-form-control-wrap your-name">
+                        <input type="text" id="signupform-phone" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" name="username" placeholder="手机号码" aria-required="true">
+                      </p>
+                      
+                      <p class="form-group field-signupform-password required">
+                        <input type="password" id="signupform-password" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" name="password" placeholder="密码" aria-required="true">
+                      </p>
+                      
+                      <div class="form-group field-loginform-rememberme">
+                        <div class="checkbox one_third">
+                          <label for="loginform-rememberme">
+                          <input type="hidden" name="checkbox-inline" value="0"><input type="checkbox" id="loginform-rememberme" name="checkbox-inline" value="0">
+                          记住登录
+                          </label>
+                          <p class="help-block help-block-error"></p>
+                        
                         </div>
-                        <div class="form-group">
-                            <label>密码</label>
-
-                            <input type="password" name="password" class="form-control" placeholder="密码" required="">
-                            <div class="clearfix note">
-                                <a href="#" class="pull-right">忘记密码?</a>
-                            </div>
+                        <div class="one_half last text-right"><a class="reset-pswd" href="/auth/reset-password">忘记密码？</a></div>
+                      </div>
+  
+                        <div class="wc-proceed-to-checkout">
+                          <a id="validate-submit" href="" class="checkout-button alt login-btn">立即登录</a>
                         </div>
-                        <div class="row">
-
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <label class="checkbox weight-300 margin-top-10">
-                                    <input type="checkbox" name="checkbox-inline">
-                                    <i></i> 记住我
-                                </label>
-
-                            </div>
-
-                            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-
-                                <button class="btn btn-primary" id="validate-submit">登录</button>
-
-                            </div>
-
-                        </div>
-
+  
                     </form>
-                    <script>
-                      _login();
-                    </script>
                     {%endif%}
-
+                  </div>
                 </div>
-                <div class="col-sm-5">
-                    <h4>还没有账号?</h4>
-                    <p>你可以在<a href="/center/public/register" class="text-info">这里</a>创建一个帐户 </p>
-                    <p>或者</p>
-                    {{HOOK@logins|safe}}
+                <div class="one_half last ">
+                  <div class="login-right">
+                        <h4>还没有账号?</h4>
+                        <p>你可以在<a href="/center/public/register" class="text-info">这里</a>创建一个帐户 </p>
+                        <p>或者</p>
+                        {{HOOK@logins|safe}}
+                  </div>
                 </div>
+                <p>
+                  <br class="clear">
+                </p>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
+      </div>
+      <br class="clear" />
+      {% endblock %}
+
+      {% block script %}
+        {%if not HOOK@loginView %}
+        <script>
+          _login();
+        </script>
+        {%endif%}
+      {% endblock %}

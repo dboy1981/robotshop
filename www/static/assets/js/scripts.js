@@ -103,6 +103,7 @@ function Init(is_ajax) {
   _cart();
 	    // _login();
   _swal();
+  _search_form();
   _ajax_post();
 	    _ajax_get();
 	    _pingpp();
@@ -111,7 +112,28 @@ function Init(is_ajax) {
 	    _panel_toggle();
 
   /** Bootstrap Tooltip **/ 
-  jQuery('a[data-toggle=tooltip], button[data-toggle=tooltip], span[data-toggle=tooltip]').tooltip();
+  if(jQuery('a[data-toggle=tooltip], button[data-toggle=tooltip], span[data-toggle=tooltip]').length > 0)
+    jQuery('a[data-toggle=tooltip], button[data-toggle=tooltip], span[data-toggle=tooltip]').tooltip();
+}
+
+function _search_form(){
+  $('.car_search_form').submit(function(){
+    var cat = $('#sch_type').val();
+    var order = $('#sch_sort_by').val();
+    var brand = $('#sch_brand').val();
+    if(!cat){
+      _toastr('请选择类型', 'top-right', 'error', false);
+      return false;
+    }
+    $('#car_search_btn').attr('disabled', true);
+    var url = '/' + cat;
+    if(order)
+      url += '-' + order;
+    if(brand)
+      url += '-0-17-pinpai_' + encodeURIComponent(brand);
+    window.location.href = url;
+    return false;
+  })
 }
 
 // panel toggle
@@ -216,7 +238,9 @@ function _ajax_get() {
  * confirm,
  *****************************************************************************************************************************/
 function _ajax_post() {
-  $(document).on('click', '.ajax-post', function() {
+  $(document).on('click', '.ajax-post', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     var target, query, form;
     var target_form = $(this).attr('target-form');
     var that = this;
@@ -401,7 +425,9 @@ function loadScript(scriptName, callback) {
  * 用户登录
  */
 function _login() {
-  $(document).on('submit', '#login', function(e) {
+  //$(document).on('submit', '#login', function(e) {
+  $('#validate-submit').on('click', function(e) {  
+    e.preventDefault();
     var data = $(this).serialize();
     $.ajax({
       type: 'POST',
@@ -413,6 +439,49 @@ function _login() {
         } else {
           // $('#ajaxModal').remove();
           location.reload(true);
+        }
+      }
+    });
+
+    return false;
+  });
+}
+
+function _sendVerifycode(){
+  var cansendVCode = true;
+  $('#sendvcode').on('click', function(e) {  
+    e.preventDefault();
+    if(!cansendVCode) return;
+    var mobile = $('#signupform-phone').val();
+    var reg = /\d{11}/;
+    if(!reg.test(mobile)){
+      _toastr('请填写手机号！', 'top-right', 'error', false);
+      return;
+    }
+    $.ajax({
+      type: 'GET',
+      url: '/center/public/sendvcode?mobile=' + mobile,
+      success: function(msg) {
+        if (msg.errno < 0) {
+          _toastr(msg.errmsg, 'top-right', 'error', false);
+        } else {
+          cansendVCode = false;
+          _toastr('验证码发送成功!', 'top-right', 'success', false);
+          var seed = 60;
+          var interval = setInterval(function(){
+            seed--;
+            if(seed <= 0){
+              clearInterval(interval);
+              interval = null;
+              cansendVCode = true;
+              seed = 90;
+              $('#sendvcode').html('获取短信验证码');
+            }else{
+              $('#sendvcode').html(seed + '秒后重发');
+            }
+            
+          }, 1000)
+
         }
       }
     });
@@ -876,13 +945,12 @@ function _sideNav() {
      * 
     *********************************************************************/
 function _cart() {
-  var _container = $('.product-add-cart');
-
+  var _container = $('.wpcf7-submit');
   if (_container.length > 0) {
     loadScript(plugin_path + 'jquery-fly/jquery.fly.min.js', function() {
-      var offset = $('.quick-cart').offset(); // 结束的地方的元素
+      var offset = $('.ti-shopping-cart').offset(); // 结束的地方的元素
       console.log(offset);
-      $('.product-add-cart').click(function(event) {
+      $('.wpcf7-submit').click(function(event) {
         event.preventDefault();
         var addcar = $(this);
         // 验证todo
@@ -907,7 +975,7 @@ function _cart() {
           _toastr('添加失败，最短租期为' + shortest + '天!', 'top-right', 'error', false);
           return false;
         }
-        var img = $('figure').find('img').attr('src');
+        var img = $('#cartimg').find('img').attr('src');
         console.log(img);
 		    var flyer = $('<img  width="80" src="' + img + '">');
         flyer.fly({
@@ -922,7 +990,7 @@ function _cart() {
             height: 0
           },
           onEnd: function() {
-            var str = $('.ichecks').serialize();
+            var str = $('.wpcf7-form').serialize();
             console.log(str);
             // return false;
             $.ajax({
@@ -1258,6 +1326,7 @@ function _flexslider() {
 /** 04. Popover
  **************************************************************** **/
 function _popover() {
+  if($('[data-toggle=popover]').length == 0) return;
   $('[data-toggle=popover]').popover();
   $(document).on('click', '.popover-title .close', function(e) {
     var $target = $(e.target), $popover = $target.closest('.popover').prev();

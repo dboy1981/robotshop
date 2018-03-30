@@ -65,10 +65,8 @@
 							<a href="javascript:;" id="mobile_nav_icon"><span class="ti-menu"></span></a>
 							<!-- End side menu -->
 							<div class="header_cart_wrapper">
-								<a href="http://themes.themegoods.com/grandcarrental/demo/cart/" title="View Cart">
-									<span class="badge badge-aqua btn-xs badge-corner" id="badge-corner">{% if controller.cart.num %}{{controller.cart.num}}{%endif%}</span>
-									<span class="ti-shopping-cart"></span>
-								</a>
+								{% if controller.cart.num %}<div class="cart_count" id="badge-corner">{{controller.cart.num}}</div>{%endif%}
+								<a href="/center/cart/" title="View Cart"><span class="ti-shopping-cart"></span></a>
 							</div>
 						</div>
 						<!-- End right corner buttons -->

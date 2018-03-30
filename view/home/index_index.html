@@ -10,10 +10,10 @@
 					<div class="standard_wrapper">
 						<h2 class="ppb_title" style="color:#ffffff;">不仅仅是机器，更是智慧</h2>
 						<div class="page_tagline" style="color:#ffffff;">寻找最好的智能机器人</div>
-						<form class="car_search_form" method="get" action="http://themes.themegoods.com/grandcarrental/demo/car-list-right-sidebar/">
+						<form class="car_search_form" method="get">
 							<div class="car_search_wrapper">
 								<div class="one_fourth themeborder">
-									<select id="brand" name="brand">
+									<select id="sch_brand" name="brand">
 										<option value="">品牌</option>
 										{%for val in typevar%}
 										{%if val.optionid == 26%}
@@ -26,7 +26,7 @@
 									<span class="ti-angle-down"></span>
 								</div>
 								<div class="one_fourth themeborder">
-									<select id="type" name="type">
+									<select id="sch_type" name="type">
 										<option value="">类型</option>
 										{%for val in column%}
 										<option value="{{val.id}}">{{val.name}}</option>
@@ -35,11 +35,11 @@
 									<span class="ti-angle-down"></span>
 								</div>
 								<div class="one_fourth themeborder">
-									<select id="sort_by" name="sort_by">
-										<option value="price_desc">价格由高到低</option>
-										<option value="price_asc">价格由低到高</option>
-										<option value="popular">按销量排序</option>
-										<option value="review">按评分排序</option>
+									<select id="sch_sort_by" name="sort_by">
+										<option value="8">租金由高到低</option>
+										<option value="9">租金由低到高</option>
+										<option value="10">按销量排序</option>
+										<option value="2">按评分排序</option>
 									</select>
 									<span class="ti-exchange-vertical"></span>
 								</div>

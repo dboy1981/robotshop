@@ -1,10 +1,20 @@
 {% extends "./inc/base.html" %}
 {% block style%}
+<link href="/static/assets/css/essentials.min.css" rel="stylesheet" type="text/css"/>
 <link href="/static/assets/css/layout-shop.css" rel="stylesheet" type="text/css" />
+<link href="/static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block content %}
 
-
+<div id="page_caption" class="hasbg parallax  withtopbar  " style="height:300px;background-image:url(/static/assets/images/IMG_3496bfree.jpg);">
+	<div class="page_title_wrapper">
+		<div class="page_title_inner">
+			<div class="page_title_content">
+				
+			</div>
+		</div>
+	</div>
+</div>
 
 
 			<!-- CART -->
@@ -147,7 +157,8 @@
 				<th style="width: 60px">商品</th>
 				<th style="width: 350px">名称</th>
 				<th>规格</th>
-                <th>单价</th>
+								<th>租金</th>
+								<th>押金</th>
                 <th>数量</th>
                 <th>优惠</th>
                 <th>小计</th>
@@ -159,7 +170,8 @@
 				<td><img src="{{val.pic}}" alt="" width="45" class="img-responsive img-thumbnail" /></td>
 				<td>{{val.title}}</td>
 				<td>{% if val.type%}{{val.type}}{%endif%}</td>
-                <td>¥{{val.unit_price|formatCurrency}}</td>
+								<td>¥{{val.zujin|formatCurrency}}</td>
+								<td>¥{{val.yajin|formatCurrency}}</td>
                 <td>{{val.qty}}</td>
                 <td>无</td>
                 <td>¥{{val.price|formatCurrency}}</td>

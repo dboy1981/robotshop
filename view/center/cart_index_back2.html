@@ -1,0 +1,132 @@
+{% extends "./inc/base.html" %}
+{% block style%}
+ <link rel='stylesheet' href='/static/assets/css/woocommerce-layout.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='/static/assets/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)' />
+  <link rel='stylesheet' id='woocommerce-general-css' href='/static/assets/css/woocommerce.css' type='text/css' media='all' />
+{% endblock %}
+{% block content %}
+
+<div id="page_caption" class="hasbg parallax  withtopbar  " style="height:300px;background-image:url(/static/assets/images/IMG_3496bfree.jpg);">
+	<div class="page_title_wrapper">
+		<div class="page_title_inner">
+			<div class="page_title_content">
+				<h1 class="withtopbar">我的购物车</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Begin content -->
+<div id="page_content_wrapper" class="hasbg withtopbar">
+		<div class="inner">
+				{% if controller.cart.data %}
+			<!-- Begin main content -->
+			<div class="inner_wrapper">
+				<div class="sidebar_content full_width">
+					<div class="woocommerce">
+						<form class="woocommerce-cart-form form-cart" action="/center/cart/getorderinfo" method="post">
+							<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+								<thead>
+									<tr>
+										<th class="table-checkbox"><input type="checkbox"  value="1" id="checkAll"></th>
+										<th class="product-thumbnail">&nbsp;</th>
+										<th class="product-name">商品</th>
+										<th class="product-price">租金(元/天)</th>
+										<th class="product-price">押金(元)</th>
+										<th class="product-price">租期(天)</th>
+										<th class="product-quantity">数量</th>
+										<th class="product-subtotal">小计(元)</th>
+										<th class="product-subtotal">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+										{% for val in controller.cart.data%}
+									<tr class="woocommerce-cart-form__cart-item cart_item">
+											<td><input type="checkbox" name="ids" value="{{val.product_id}}{%if val.type%}||{{val.type}}{%endif%}" data-val="{{val.product_id}}{%if val.type%}||{{val.type|urlencode}}{%endif%}"></td>
+										<td class="product-thumbnail">
+												<a target="_blank" href="{{val.url}}"><img src="{{val.pic}}" alt="{{val.title}}" style="width: 80px;"></a>
+										</td>
+										<td class="product-name" data-title="Product">
+												<a target="_blank" href="{{val.url}}" >{{val.title}}</a>
+										</td>
+										<td class="product-price" data-title="Price">
+											<span class="woocommerce-Price-amount amount">{{val.zujin|formatCurrency}}</span>
+										</td>
+										<td class="product-price" data-title="Price">
+											<span class="woocommerce-Price-amount amount">{{val.yajin|formatCurrency}}</span>
+										</td>
+										<td class="product-price" data-title="Price">
+											<span class="woocommerce-Price-amount amount">{{val.days}}</span>
+										</td>
+										<td class="product-quantity" data-title="Quantity">
+											<div class="quantity">
+												<input type="number" id="quantity_5aa6157324104" class="input-text qty text stepper" step="1" value="{{val.qty}}" {%if val.stock > 0%}min="1"{%else%}min="0" disabled {%endif%} max="{{val.stock}}" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" />{%if val.stock > 0%}<span class="text-default">有货</span>{%else%}<span class="text-danger">无货</span>{%endif%}
+											</div>
+										</td>
+										<td class="product-subtotal" data-title="总价" data-price ="{{val.price}}">
+											<span class="woocommerce-Price-amount amount">{{val.price|formatCurrency}}</span>
+										</td>
+										<td>{% if controller.is_login %}
+												<div class="del"><a class="btn btn-default btn-xs margin-bottom-6 lightbox" href="/center/cart/delcart/?ids={{val.product_id}}{%if val.type%}||{{val.type|urlencode}}{%endif%}" data-lightbox="iframe" data-plugin-options='{"type":"ajax", "closeOnBgClick":false}'> 删除 </a></div>
+												<div class="inform"> {%if val.stock == 0%}<a href="#" class="btn btn-default btn-xs margin-bottom-6"> 到货通知 </a>{%endif%}</div>
+												<div class="follow"> <a href="#" class="btn btn-default btn-xs"> 移到我的关注 </a></div>
+												{%else%}
+												<div class="del"><a href="/center/public/login" class="btn btn-default btn-xs margin-bottom-6"> 删除 </a></div>
+												<div class="inform"> {%if val.stock == 0%}<a href="/center/public/login"  class="btn btn-default btn-xs margin-bottom-6"> 到货通知 </a>{%endif%}</div>
+												<div class="follow"> <a href="/center/public/login" class="btn btn-default btn-xs"> 移到我的关注 </a></div>
+												{% endif %}
+											</td>
+									</tr>
+									{%endfor%}
+									
+									<tr>
+										<td colspan="9" class="actions">
+											<div class="coupon">
+												{% if controller.is_login %}
+												<a class="btn btn-default lightbox delall" href="/center/cart/delcart" data-lightbox="iframe" data-plugin-options='{"type":"ajax", "closeOnBgClick":false}'>删除选中的商品</a> <a class="btn btn-default " type="button">移到我的关注</a>
+												{%else%}
+												<a class="btn btn-default" href="/center/public/login">删除选中的商品</a> <a href="/center/public/login" class="btn btn-default">移到我的关注</a>
+												{% endif %}
+											</div>
+											<div>
+												<div class="col-md-4 col-sm-4 text-right">
+													<p class="font-lato size-14 "><span class="text-default">总价（不含运费）：</span><strong class="text-danger size-16">¥<span id="total" data-total="{{controller.cart.total|formatCurrency}}">0.00</span></strong></p>
+													<p class="font-lato size-14 margin-top-6"><span class="text-default">优惠：</span><span class="">¥0.00</span></p>
+												</div>
+												<div class="col-md-2 col-sm-2 text-right"><!-- right btn -->
+													{% if controller.is_login %}
+													<button  class="btn btn-danger btn-lg btn-block size-15" type="submit">去结算（<small><span class="nums">0</span>件</small>）</button>
+													{%else%}
+													<a  class="btn btn-primary btn-lg btn-block size-15" href="/center/public/login"><i class="fa fa-user-plus"></i> 登录结算 </a></li>
+													{% endif %}
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+			<!-- End main content -->
+
+			{%else%}
+				<div class="jumbotron">
+					<h2><i class="fa fa-opencart"></i> 购物车内暂时没有商品!</h2>
+					<p class="size-16">去 <a href="/">首页</a> 挑选喜欢的商品。</p>
+				</div>
+			{%endif%}
+		</div>
+	</div>
+	<br class="clear" />
+
+
+{% endblock %}
+
+{% block script%}
+<!-- PAGE LEVEL SCRIPTS -->
+		<script type="text/javascript" src="/static/assets/js/view/demo.shop.js"></script>
+         <script type="text/javascript" src="/static/assets/js/view/cart.js"></script>
+{% endblock %}

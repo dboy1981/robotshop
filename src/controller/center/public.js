@@ -12,33 +12,41 @@ module.exports = class extends think.cmswing.center {
   async registerAction() {
     if (this.isPost) {
       const data = this.post();
+
+      const vcode = await this.session('vcode');
+      if(think.isEmpty(vcode) || think.isEmpty(data.vcode) || vcode != data.vcode){
+        return this.fail('验证码错误！');
+      }
+      await this.session('vcode', '');
       // console.log(data);
       // 验证
       let res;
-      if (think.isEmpty(data.username)) {
-        return this.fail('用户昵称不能为空！');
-      } else {
-        res = await this.model('member').where({username: ltrim(data.username)}).find();
-        if (!think.isEmpty(res)) {
-          return this.fail('用户昵称已存在，请重新填写！');
-        }
-      }
       if (think.isEmpty(data.mobile)) {
-        return this.fail('手机号码不能为空！');
+        return this.fail('手机号不能为空！');
       } else {
-        res = await this.model('member').where({mobile: data.mobile}).find();
+        res = await this.model('member').where({mobile: ltrim(data.mobile)}).find();
         if (!think.isEmpty(res)) {
-          return this.fail('手机号码已存在，请重新填写！');
+          return this.fail('手机号已存在，请重新填写！');
         }
       }
-      if (think.isEmpty(data.email)) {
-        return this.fail('电子邮箱不能为空！');
-      } else {
-        res = await this.model('member').where({email: data.email}).find();
-        if (!think.isEmpty(res)) {
-          return this.fail('电子邮箱已存在，请重新填写！');
-        }
-      }
+
+      data.username = 'VIP_' + this.rndNumber(10, ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']);
+      // if (think.isEmpty(data.mobile)) {
+      //   return this.fail('手机号码不能为空！');
+      // } else {
+      //   res = await this.model('member').where({mobile: data.mobile}).find();
+      //   if (!think.isEmpty(res)) {
+      //     return this.fail('手机号码已存在，请重新填写！');
+      //   }
+      // }
+      // if (think.isEmpty(data.email)) {
+      //   return this.fail('电子邮箱不能为空！');
+      // } else {
+      //   res = await this.model('member').where({email: data.email}).find();
+      //   if (!think.isEmpty(res)) {
+      //     return this.fail('电子邮箱已存在，请重新填写！');
+      //   }
+      // }
       if (think.isEmpty(data.password) && think.isEmpty(data.password2)) {
         return this.fail('密码不能为空！');
       } else {
@@ -88,7 +96,7 @@ module.exports = class extends think.cmswing.center {
       const username = this.post('username');
       let password = this.post('password');
       password = encryptPassword(password);
-      const res = await this.model('cmswing/member').signin(username, password, this.ip, 5, 0);
+      const res = await this.model('cmswing/member').signin(username, password, this.ip, 3, 0);
       // 钩子
       if (res.uid > 0) {
         // 记录用户登录行为
@@ -145,5 +153,25 @@ module.exports = class extends think.cmswing.center {
     } else {
       return this.redirect('/index');
     }
+  }
+
+  async sendvcodeAction() {
+    var mobile = this.get('mobile');
+    if(think.isEmpty(mobile))
+      return this.fail(-1, '手机号不能为空！');
+    //1分钟内只能发送一次
+    var now = new Date().getTime();
+    var interval = await this.cache('vcode_'+mobile);
+    if(!think.isEmpty(interval) && now - interval < 60000){
+      return this.fail(-2, '1分钟内只能发送一次！');
+    }
+    await this.cache('vcode_'+mobile, now);
+
+    const rnd = this.rndNumber(6);
+    await this.session('vcode', rnd);
+    console.log(rnd);
+    //var sms = this.service('cmswing/sms');
+    //await sms.send(mobile, `【趣租机】您的验证码是${rnd}。如非本人操作，请忽略本短信`);
+    return this.success();
   }
 };

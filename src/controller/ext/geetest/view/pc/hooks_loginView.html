@@ -1,19 +1,11 @@
-<form role="form" class="sky-form" id="login" method="post">
+<form role="form" class="wpcf7-form" method="post">
 
-    <div class="form-group">
-        <label>账号</label>
-
-        <input type="text" name="username" class="form-control" placeholder="邮箱/手机号/昵称" required="">
-
-    </div>
-    <div class="form-group">
-        <label>密码</label>
-
-        <input type="password" name="password" class="form-control" placeholder="密码" required="">
-        <div class="clearfix note">
-            <a href="#" class="pull-right">忘记密码?</a>
-        </div>
-    </div>
+    <p class="wpcf7-form-control-wrap your-name">
+        <input type="text" id="signupform-phone" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" name="username" placeholder="手机号码" aria-required="true">
+    </p>
+    <p class="form-group field-signupform-password required">
+        <input type="password" id="signupform-password" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" name="password" placeholder="密码" aria-required="true">
+      </p>
     <!--是否开启验证码-->
     <div class="form-group">
         <div id="captcha">
@@ -22,23 +14,21 @@
     </div>
 
     <div id="alert"></div>
-    <div class="row">
-
-        <div class="col-md-6 col-sm-6 col-xs-6">
-            <label class="checkbox weight-300 margin-top-10">
-                <input type="checkbox" name="checkbox-inline">
-                <i></i> 记住我
-            </label>
-
+      <div class="form-group field-loginform-rememberme">
+        <div class="checkbox one_third">
+          <label for="loginform-rememberme">
+          <input type="hidden" name="checkbox-inline" value="0"><input type="checkbox" id="loginform-rememberme" name="checkbox-inline" value="0">
+          记住登录
+          </label>
+          <p class="help-block help-block-error"></p>
+        
         </div>
+        <div class="one_half last text-right"><a class="reset-pswd" href="/auth/reset-password">忘记密码？</a></div>
+      </div>
 
-        <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-
-            <button class="btn btn-primary" id="validate-submit">登录</button>
-
-        </div>
-
-    </div>
+      <div class="wc-proceed-to-checkout">
+          <a id="validate-submit" href="" class="checkout-button alt login-btn">立即登录</a>
+      </div>
 
 </form>
 <!-- 引入封装了failback的接口--initGeetest -->

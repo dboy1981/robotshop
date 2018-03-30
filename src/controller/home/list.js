@@ -108,6 +108,12 @@ module.exports = class extends think.cmswing.center {
         map.deadline = {'<': new Date().getTime()};
         o.create_time = 'DESC';
         break;
+      case 8:
+        o.zujin = 'DESC';
+        break;
+      case 9:
+        o.zujin = 'ASC';
+        break;  
       default:
         o.create_time = 'DESC';
     }

@@ -26,6 +26,7 @@
   <link rel='stylesheet' href='/static/assets/styles/themify-icons.css' type='text/css' media='all' />
   <link rel='stylesheet' href='/static/assets/styles/kirki-styles.css' type='text/css' media='all' />
 	<link rel='stylesheet' href='/static/assets/styles/grid.css' type='text/css' media='all' />
+	<link rel='stylesheet' href='/static/assets/plugins/toastr/toastr.css' type='text/css' media='all' />
 	
 	{% block style %}{% endblock %}
 	<!--页面头部css钩子加载-->
@@ -95,7 +96,8 @@
 
 {#<body class="smoothscroll enable-animation bg-grey">#}
 	<body class="home page-template-default page page-id-3075 ppb_enable">
-
+			<input type="hidden" id="pp_fixed_menu" name="pp_fixed_menu" value="1" />
+			<input type="hidden" id="tg_smart_fixed_menu" name="tg_smart_fixed_menu" value="0" />
 	<!-- SLIDE TOP -->
 	{% include "./inc_slidetop.html" %}
 	<!-- /SLIDE TOP -->
@@ -217,7 +219,7 @@
 
 		})
 	</script>
-	<script type="text/javascript" src="/static/assets/js/scripts.min.js"></script>
+	<script type="text/javascript" src="/static/assets/js/scripts.js"></script>
 
 	<script type='text/javascript' src='/static/assets/js/ilightbox.packed.js'></script>
   <script type='text/javascript' src='/static/assets/js/waypoints.min.js'></script>

@@ -1,4 +1,85 @@
-<div id="header" class=" clearfix header-sm header-fixed-top">
+
+<div class="top_bar hasbg">
+		<div class="standard_wrapper">
+			<!-- Begin logo -->
+			<div id="logo_wrapper">
+				<div id="logo_normal" class="logo_container">
+					<div class="logo_align">
+						<a id="custom_logo" class="logo_wrapper hidden" href="http://themes.themegoods.com/grandcarrental/demo/">
+												<img src="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/themes/grandcarrental/images/logo@2x_white.png" alt="" width="175" height="24"/>
+											</a>
+					</div>
+				</div>
+				<div id="logo_transparent" class="logo_container">
+					<div class="logo_align">
+						<a id="custom_logo_transparent" class="logo_wrapper default" href="http://themes.themegoods.com/grandcarrental/demo/">
+												<img src="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/themes/grandcarrental/images/logo@2x_white.png" alt="" width="175" height="24"/>
+											</a>
+					</div>
+				</div>
+				<!-- End logo -->
+				<div id="menu_wrapper">
+					<div id="nav_wrapper">
+						<div class="nav_wrapper_inner">
+							<div id="menu_border_wrapper">
+								<div class="menu-main-menu-container">
+									<ul id="main_menu" class="nav">
+											
+										<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home current-menu-ancestor current-menu-parent menu-item-has-children menu-item-6"><a href="/">首页</a>
+										</li>
+										<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-8"><a href="/discovery">发现</a>
+											{#<ul class="sub-menu">
+												
+												
+												<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children arrow menu-item-223"><a href="#">Car By Brands</a>
+													<ul class="sub-menu">
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-carbrand menu-item-227"><a href="#">Audi</a></li>
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-carbrand menu-item-225"><a href="#">BMW</a></li>
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-carbrand menu-item-228"><a href="#">Lexus</a></li>
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-carbrand menu-item-224"><a href="#">Mercedes Benz</a></li>
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-carbrand menu-item-226"><a href="#">Porsche</a></li>
+													</ul>
+												</li>
+												<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children arrow menu-item-229"><a href="#">Car By Types</a>
+													<ul class="sub-menu">
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-cartype menu-item-232"><a href="#">Coupe</a></li>
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-cartype menu-item-230"><a href="#">Sedan</a></li>
+														<li class="menu-item menu-item-type-taxonomy menu-item-object-cartype menu-item-231"><a href="#">SUV</a></li>
+													</ul>
+												</li>
+											</ul>#}
+										</li>
+										
+										<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-11"><a href="/mall">商城</a>
+										</li>
+										<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-13"><a href="/help">帮助</a>
+										
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<!-- Begin right corner buttons -->
+						<div id="logo_right_button">
+							<!-- Begin side menu -->
+							<a href="javascript:;" id="mobile_nav_icon"><span class="ti-menu"></span></a>
+							<!-- End side menu -->
+							<div class="header_cart_wrapper">
+								{% if controller.cart.num %}<div class="cart_count" id="badge-corner">{{controller.cart.num}}</div>{%endif%}
+								<a href="/center/cart/" title="View Cart"><span class="ti-shopping-cart"></span></a>
+							</div>
+						</div>
+						<!-- End right corner buttons -->
+						
+					</div>
+					<!-- End main nav -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+{#<div id="header" class="sticky clearfix header-sm ">
 	<!--
 				AVAILABLE HEADER CLASSES
 
@@ -44,11 +125,11 @@
 						<i class="fa fa-search"></i>
 					</a>
 					<div class="search-box">
-						<form action="page-search-result-1.html" method="get">
+						<form action="/search" method="get">
 							<div class="input-group">
-								<input type="text" name="src" placeholder="Search" class="form-control" />
+								<input type="text" name="q" placeholder="Search" class="form-control" />
 								<span class="input-group-btn">
-												<button class="btn btn-primary" type="submit">Search</button>
+												<button class="btn btn-primary" type="submit">搜索</button>
 											</span>
 							</div>
 						</form>
@@ -62,6 +143,7 @@
 						<span class="badge badge-aqua btn-xs badge-corner" id="badge-corner">{% if controller.cart.num %}{{controller.cart.num}}{%endif%}</span>
 						<i class="fa fa-shopping-cart"></i>
 					</a>
+
 					<div class="quick-cart-box">
 						<h4>购物车</h4>
 
@@ -91,9 +173,10 @@
 						<!-- /quick cart footer -->
 
 					</div>
+
 				</li>
 				<!-- /QUICK SHOP CART -->
-{%endif%}
+				{%endif%}
 			</ul>
 			<!-- /BUTTONS -->
 
@@ -126,7 +209,7 @@
 						{% channel data='channel'%}
 						{% for val in channel%}
 						{%if val.status > 0%}
-						<li class="{% if val.children %}dropdown{% endif %} {% if category.id|in_Array(val.on) %}active{% endif %}">
+						<li class="{% if val.children %}dropdown{% endif %} {% if (category.id|in_Array(val.on)) or (val.url|in_Array(controller.active)) %}active{% endif %}">
 
 							<a {% if val.children%}class="dropdown-toggle" {% endif %} href="{{val.url}}" {%if val.target ==1%} target="_blank"{%endif%}>{{val.title}}</a> {% if val.children%}
 							<ul class="dropdown-menu">
@@ -147,6 +230,7 @@
 								{% endfor %}
 							</ul>
 							{% endif %}
+							<span class="aline"></span>
 						</li>
 						{%endif%}
 						{% endfor%}
@@ -159,4 +243,4 @@
 	</header>
 	<!-- /Top Nav -->
 
-</div>
+</div>#}

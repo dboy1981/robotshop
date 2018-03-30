@@ -138,6 +138,7 @@ jQuery(document).ready(function(){
 		jQuery('#page_content_wrapper.split, .page_content_wrapper.split').css('paddingBottom', parseInt(topBarHeight+jQuery('.header_style_wrapper .above_top_bar').height())+'px');
 		
 		jQuery(window).scroll(function(){
+			
 			if(jQuery('#pp_fixed_menu').val()==1 && jQuery('html').data('style') != 'fullscreen'  && jQuery('html').data('style') != 'fullscreen_white')
 			{
 				if(jQuery(this).scrollTop() >= 200){

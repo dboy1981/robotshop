@@ -4,13 +4,8 @@
 {% endblock %}
 {% block content %}
 {%set cate = category.id|get_cate()%}
-{%if category.pid !=0%}
-{%column data="column",pid=category.pid%}
-{%else%}
-{%column data="column",cid=category.id%}
-{%endif%}
 
-<div id="page_caption" class="hasbg parallax  withtopbar  " style="background-image:url(/static/assets/images/IMG_3496bfree.jpg);"></div>
+<div id="page_caption" class="hasbg parallax  withtopbar  " style="height:300px;background-image:url(/static/assets/images/IMG_3496bfree.jpg);"></div>
 
 <div id="page_content_wrapper" class="hasbg withtopbar ">
     <form id="car_search_form" name="car_search_form" method="get" action="http://themes.themegoods.com/grandcarrental/demo/car-grid-right-sidebar/">
@@ -61,7 +56,7 @@
                                 {% set pic = item.pics|strToArray%}
                                 <div class="element grid classic2_cols animated2">
                                         <div class="one_half gallery2 grid static filterable portfolio_type themeborder" data-id="post-2" style="background-image:url({{pic[0]|get_pic('m=1,w=260,h=260')}});">
-                                          <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/bmw-3-series/"></a>
+                                          <a class="car_image" href="{{item.name|get_url(item.id)}}"></a>
                                           <div class="portfolio_info_wrapper">
                                             <div class="car_attribute_wrapper">
                                               <h4>{{item.title}}</h4>
@@ -86,7 +81,7 @@
                                             </div>
                                             <div class="car_attribute_price">
                                               <div class="car_attribute_price_day three_cols">
-                                                <span class="single_car_currency">¥</span><span class="single_car_price">{{item.zujin|formatCurrency}}</span> <span class="car_unit_day">每天</span>
+                                                <span class="single_car_currency">¥</span><span class="single_car_price">{{item.zujin}}</span> <span class="car_unit_day">每天</span>
                                               </div>
                                             </div>
                                             <br class="clear" />
@@ -95,346 +90,146 @@
                                       </div>
                                     {%endfor%}
                         </div>
+                        <br class="clear" />
+                        <div>
+                          {{pagination | safe}}
+                        </div>
                 </div>
           </div>
-
+          <div class="sidebar_wrapper">
+                <div class="sidebar">
+                  <div class="content">
+                    <ul class="sidebar_widget">
+                      <li id="text-4" class="widget widget_text">
+                        <h2 class="widgettitle">For More Informations</h2>
+                        <div class="textwidget"><span class="ti-mobile" style="margin-right:10px;"></span>1-567-124-44227
+                          <br/>
+                          <span class="ti-alarm-clock" style="margin-right:10px;"></span>Mon - Sat 8.00 - 18.00</div>
+                      </li>
+                      <li id="grandcarrental_cat_posts-2" class="widget grandcarrental_Cat_Posts">
+                        <h2 class="widgettitle"><span>热卖</span></h2>
+                        <ul class="posts blog withthumb ">
+                        {%topic data="hotgoods",limit="9",isstu=1,cid=category.id,type="hot",cache="1000"%}
+                        {%- for items in hotgoods | slice(3) %}
+                        {%- for item in items %}
+                        {% set pic = item.pics|strToArray%}
+                          <li>
+                            <div class="post_circle_thumb"><a href="{{item.name|get_url(item.id)}}"><img class="alignleft frame post_thumb" src="{{pic[0]|get_pic('m=1,w=150,h=150')}}" alt="{{item.title}}" /></a></div><a href="{{item.name|get_url(item.id)}}">{{item.title}}</a>
+                            <div class="post_attribute">{{item.zujin|formatCurrency}}元/天</div>
+                          </li>
+                          {%- endfor %}
+                          {%- endfor %}
+                        </ul>
+                      </li>
+                      <li id="grandcarrental_instagram-3" class="widget grandcarrental_Instagram">
+                        <h2 class="widgettitle">Recent Trips</h2>
+                        <ul class="flickr">
+                          <li><a target="_blank" href="https://www.instagram.com/p/BfiyropljwL/"><img src="https://scontent.cdninstagram.com/vp/82b2f6fe9a08f03b7c537a7c26b400f9/5B18E435/t51.2885-15/s150x150/e35/c0.135.1080.1080/28158302_154256861877311_8120642924523290624_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/Bfga61oFzKH/"><img src="https://scontent.cdninstagram.com/vp/96bbde78e024689ae57cd4ad7d6cee14/5B144818/t51.2885-15/s150x150/e35/c0.135.1080.1080/28154486_337792980050670_2013111241047801856_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/BfbDkoglY-i/"><img src="https://scontent.cdninstagram.com/vp/b24601f7e648a47024dc5a3e31462fe7/5B1DAD1F/t51.2885-15/s150x150/e35/c0.135.1080.1080/27892820_313619659159768_4347838081420754944_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/BfV5nPjFwxy/"><img src="https://scontent.cdninstagram.com/vp/da234eb8607fad9875670de7945fed6f/5A937EBE/t51.2885-15/s150x150/e15/27879904_377346212729376_2706528737414873088_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/BfQwkz7lSkw/"><img src="https://scontent.cdninstagram.com/vp/e46778651dc376d017f2ce4f999e4fbb/5B0B1193/t51.2885-15/s150x150/e35/c0.135.1080.1080/27892989_390585188068544_492130800318283776_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/BfJB_8ulYkj/"><img src="https://scontent.cdninstagram.com/vp/2395f92169d552ac17ecfa81fc802d0f/5B0D9B53/t51.2885-15/s150x150/e35/c0.135.1080.1080/27878331_1794155054227580_4732715705747636224_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/BfD4bUblYHB/"><img src="https://scontent.cdninstagram.com/vp/1daeaad8b29f24fae0f40695a9488ba3/5B16C3EF/t51.2885-15/s150x150/e35/c0.135.1080.1080/27578685_478271165903385_1098165683809681408_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/Be8KDkFFSF6/"><img src="https://scontent.cdninstagram.com/vp/2e5a8efdb2cf93e396506bf6c6fbf04f/5B4909DD/t51.2885-15/s150x150/e35/c0.134.1080.1080/27574407_549614245395586_4266320074589077504_n.jpg" width="75" height="75" alt="" /></a></li>
+                          <li><a target="_blank" href="https://www.instagram.com/p/Be2_UOVljwi/"><img src="https://scontent.cdninstagram.com/vp/70d8342af1087d28fe159c0ebe8dd496/5A935A84/t51.2885-15/s150x150/e15/26871174_332562110562924_627224598567452672_n.jpg" width="75" height="75" alt="" /></a></li>
+                        </ul>
+                        <br class="clear" />
+                      </li>
+                      <li id="grandcarrental_social_profiles_posts-3" class="widget grandcarrental_Social_Profiles_Posts">
+                        <h2 class="widgettitle">Connect with Us</h2>
+                        <div class="social_wrapper shortcode light small">
+                          <ul>
+                            <li class="facebook"><a target="_blank" title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="twitter"><a target="_blank" title="Twitter" href="https://twitter.com/#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="youtube"><a target="_blank" title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
+                            <li class="pinterest"><a target="_blank" title="Pinterest" href="https://pinterest.com/#"><i class="fa fa-pinterest"></i></a></li>
+                            <li class="instagram"><a target="_blank" title="Instagram" href="https://instagram.com/theplanetd"><i class="fa fa-instagram"></i></a></li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
 
 </div>
-<section class="page-header page-header-xs" >
-    <div class="container">
-        {%if column|length>0%}
-        <h1>{{category.title}}</h1>
-        {%endif%}
-        <!-- breadcrumbs -->
-        <ol class="breadcrumb {%if column|length==0%} breadcrumb-inverse {%endif%}">
-            <li><a href="/">首页</a></li>
-            {%for val in breadcrumb %}
-            {% if val.id == category.id %}
-            <li class="active">{{val.title}}</li>
-            {% else %}
-            <li><a href="{{val.url}}">{{val.title}}</a></li>
 
-            {% endif %}
-            {% endfor %}
-        </ol><!-- /breadcrumbs -->
-        <!-- page tabs -->
-
-        {%if column|length>0%}
-        <ul class="page-header-tabs list-inline">
-
-            <li {%if breadcrumb[0].id == category.id %}class="active"{%endif%}><a href="{{breadcrumb[0].url}}">全部</a></li>
-            {%for val in column%}
-            <li  {%if val.id == category.id %}class="active"{%endif%}><a href="{{val.url}}">{{val.name}}</a></li>
-            {%endfor%}
-        </ul>
-        {%endif%}
-        <!-- /page tabs -->
-    </div>
-</section>
-<!-- /PAGE HEADER -->
-
-
-
-
-<!-- -->
-<section>
-    <div class="container">
-        <!--分类信息-->
-        {% include "./inc_sort.html" %}
-        <!--/分类信息-->
-        <div class="row">
-
-            <!-- RIGHT -->
-            <div class="col-lg-10 col-md-10 col-sm-10 ">
-
-                {%if breadcrumb[0].id == category.id%}
-                <!-- CAROUSEL -->
-                <div class="owl-carousel buttons-autohide controlls-over margin-bottom-30 radius-4" data-plugin-options='{"singleItem": true, "autoPlay": 6000, "navigation": true, "pagination": true, "transitionStyle":"fade"}'>
-                    <!-- item -->
-                    <div>
-                        <div class="caption-slider-default">
-                            <div class="display-table">
-                                <div class="display-table-cell vertical-align-middle">
-                                    <div class="caption-container text-left">
-                                        <h2>全场 <strong>限时折扣</strong> &ndash; 50% OFF</h2>
-                                        <p>
-                                            这是一个商城分类页面的广告位<br />
-                                            你可以放置您的推广营销内容.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <img class="img-responsive radius-4" src="/static/assets/images/top_2.png" width="851" height="335" alt="">
-                    </div>
-                    <!-- /item -->
-
-                    <!-- item -->
-                    <div>
-
-                        <div class="caption-slider-default">
-                            <div class="display-table">
-                                <div class="display-table-cell vertical-align-middle">
-                                    <div class="caption-container text-left">
-                                        <h2>演示广告位置 <strong>就是这里</strong></h2>
-                                        <p>
-                                            这是一个商城分类页面的广告位<br />
-                                            你可以放置您的推广营销内容.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <img class="img-responsive radius-4" src="/static/assets/images/top_1.png" width="851" height="335" alt="">
-                    </div>
-                    <!-- /item -->
-
+<br class="clear" />
+    <div class="car_recently_view">
+      <div class="standard_wrapper">
+        <h3 class="sub_title">Recently View Cars</h3>
+        <div id="portfolio_filter_wrapper" class="gallery grid four_cols portfolio-content section content clearfix" data-columns="4">
+          <div class="element grid classic4_cols animated1">
+            <div class="one_fourth gallery4 grid static filterable portfolio_type themeborder" data-id="post-1" style="background-image:url(http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/mercedes-benz-cls-class-shooting-brake-13824-1920x1200-700x466.jpg);">
+              <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/mercedes-benz-cls-class/"></a>
+              <div class="portfolio_info_wrapper">
+                <div class="car_attribute_wrapper">
+                  <h5>Mercedes Benz CLS-Class</h5>
                 </div>
-                <!-- /CAROUSEL -->
-                {%endif%}
-
-
-                <!-- LIST OPTIONS -->
-                <div class="panel panel-default">
-                    <div class="panel-body padding-6">
-                        <div class="clearfix shop-list-options nomargin" style="height: 35px;overflow: hidden">
-                            <div class=" pull-right">
-                                {{pagination | safe}}
-                            </div>
-
-
-                            <div class="options-left">
-                                <select>
-                                    <option value="pos_asc">默认排序 高</option>
-                                    <option value="pos_desc">默认排序 低</option>
-                                    <option value="name_asc">销量排序 高</option>
-                                    <option value="name_desc">销量排序 低</option>
-                                    <option value="price_asc">价格排序 高</option>
-                                    <option value="price_desc">价格排序 低</option>
-                                </select>
-
-                                <a class="btn active fa fa-th" href="shop-4col-left.html"><!-- grid --></a>
-                                <a class="btn fa fa-list" href="shop-1col-left.html"><!-- list --></a>
-                            </div>
-
-                        </div>
-                    </div>
+                <div class="car_attribute_price">
+                  <div class="car_attribute_price_day four_cols">
+                    <span class="single_car_currency">$</span><span class="single_car_price">100</span> <span class="car_unit_day">Per Day</span>
+                  </div>
                 </div>
-
-                <!-- /LIST OPTIONS -->
-
-
-                <ul class="shop-item-list1 row list-inline " style="margin-left:-5px;margin-right: -5px ">
-                    {% for item in list%}
-                    <!-- ITEM -->
-                    <li class="col-xs-6 col-lg-3 col-md-3 col-sm-3 ">
-                        <div class="panel panel-default">
-                            <div class="panel-body shop-item nomargin nopadding">
-                                {% set pic = item.pics|strToArray%}
-                                <div class="thumbnail nomargin noborder" >
-                                    <!-- product image(s) -->
-                                    <a class="shop-item-image" href="{{item.name|get_url(item.id)}}" title="{{item.title}}" target="_blank" style="height: 216px;overflow: hidden">
-                                        <img class="img-responsive lazy" data-original="{{pic[0]|get_pic('m=1,w=260,h=260')}}" alt="shop first image" />
-                                        {% if pic|length >1%}
-                                        <img class="img-responsive lazy" data-original="{{pic[1]|get_pic('m=1,w=260,h=260')}}" alt="shop hover image" />
-                                        {% endif %}
-                                    </a>
-                                    <!-- /product image(s) -->
-
-                                    <!-- hover buttons -->
-                                    <div class="shop-option-over"><!-- replace data-item-id width the real item ID - used by js/view/demo.shop.js -->
-
-                                        <a class="btn btn-default add-wishlist" href="#" data-item-id="1" data-toggle="tooltip" title="Add To Wishlist"><i class="fa fa-heart nopadding"></i></a>
-                                        <a class="btn btn-default add-compare" href="#" data-item-id="1" data-toggle="tooltip" title="Add To Compare"><i class="fa fa-bar-chart-o nopadding" data-toggle="tooltip"></i></a>
-                                    </div>
-                                    <!-- /hover buttons -->
-                                    <!-- countdown -->
-                                    <div class="shop-item-counter">
-                                        <div class="countdown" data-from="January 31, 2018 15:03:26" data-labels="年,月,周,天,时,分,秒"><!-- Example Date From: December 31, 2018 15:03:26 --></div>
-                                    </div>
-                                    <!-- /countdown -->
-                                    <!-- product more info -->
-                                    <div class="shop-item-info">
-                                        <span class="label label-success">新品</span>
-                                        <span class="label label-danger">热卖</span>
-                                    </div>
-                                    <!-- /product more info -->
-                                </div>
-                            </div>
-                            <div class="panel-footer padding-3">
-                                <div class="shop-item-summary text-center">
-
-                                    <!-- price -->
-                                    <div class="shop-item-price text-danger f-16 nomargin">
-                                        {% if item.price|get_price_format('2') %}<span class="line-through f-14">¥{{item.price|get_price_format('2')}}</span>{%endif%}
-                                        ¥{{item.price|get_price_format('1')}}
-                                    </div>
-                                    <!-- /price -->
-                                    <!-- rating -->
-                                    <div class="shop-item-rating-line">
-                                        <div class="rating rating-5 size-13"><!-- rating-0 ... rating-5 --></div>
-                                    </div>
-                                    <!-- /rating -->
-
-                                    <h2 class="text-intercept"><a class=""  href="{{item.name|get_url(item.id)}}" title="{{item.title}}" target="_blank">{{item.title}}</a></h2>
-                                </div>
-                                {#
-                                {% set stock = item.id|getmodelfield(item.model_id,'total_stock') %}
-                                {% if stock == 0%}
-                                <!-- buttons -->
-                                <div class="shop-item-buttons text-center">
-                                    <span class="out-of-stock">已售罄</span><!-- add .clean to remove css characteres -->
-                                </div>
-                                {% endif %}
-                                #}
-                            </div>
-                        </div>
-
-
-                    </li>
-                    <!-- /ITEM -->
-                    {%endfor%}
-
-                </ul>
-
-
-                <!-- Pagination Default -->
-                <!-- LIST OPTIONS -->
-                <div class="panel panel-default">
-                    <div class="panel-body padding-6">
-                        <div class="clearfix shop-list-options nomargin" style="height: 35px;overflow: hidden">
-                            <div class=" pull-right">
-                                {{pagination | safe}}
-                            </div>
-
-
-                            <div class="options-left">
-                                <select>
-                                    <option value="pos_asc">默认排序 高</option>
-                                    <option value="pos_desc">默认排序 低</option>
-                                    <option value="name_asc">销量排序 高</option>
-                                    <option value="name_desc">销量排序 低</option>
-                                    <option value="price_asc">价格排序 高</option>
-                                    <option value="price_desc">价格排序 低</option>
-                                </select>
-
-                                <a class="btn active fa fa-th" href="shop-4col-left.html"><!-- grid --></a>
-                                <a class="btn fa fa-list" href="shop-1col-left.html"><!-- list --></a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- /LIST OPTIONS -->
-                <!-- /Pagination Default -->
-
+                <br class="clear" />
+              </div>
             </div>
-
-
-            <!-- LEFT -->
-            <div class="col-lg-2 col-md-2 col-sm-2">
-                <!-- INLINE SEARCH -->
-                <div class="inline-search clearfix margin-bottom-20">
-                    <form action="/search" method="get" class="widget_search" target="_blank">
-                        <input type="search" placeholder="请输入关键词..." id="q" name="q" class="serch-input">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
+          </div>
+          <div class="element grid classic4_cols animated2">
+            <div class="one_fourth gallery4 grid static filterable portfolio_type themeborder" data-id="post-2" style="background-image:url(http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/bmw-3-series-sedan-wallpaper-1920x1200-05-700x466.jpg);">
+              <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/bmw-3-series/"></a>
+              <div class="portfolio_info_wrapper">
+                <div class="car_attribute_wrapper">
+                  <h5>BMW 3 Series</h5>
                 </div>
-                <!-- /INLINE SEARCH -->
-                <!-- CATEGORIES -->
-                <div class="panel panel-default side-nav">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">{{breadcrumb[0].title}}分类</h2>
-                    </div>
-                    <div class="panel-body" style="padding: 10px 0 0 10px">
-                        <ul class="list-group list-group-bordered  uppercase nomargin">
-                            <!--{{breadcrumb[1].id}}-->
-                            {% column data="clist",tree=breadcrumb[0].id %}
-                            {% for val in clist %}
-                            <!--{%if breadcrumb[1].id == val.id%} active {%endif%}-->
-                            <li class="list-group-item {%if breadcrumb[1].id == val.id%}active {%endif%} ">
-                                <a  {% if val.children %}class="dropdown-toggle "{%endif%} href="{{val.url}}">{{val.name}}</a>
-                                {% if val.children %}
-                                <ul >
-                                    {% for _val in val.children %}
-                                    <li class="{%if breadcrumb[2].id == _val.id%}active {%endif%}"><a href="{{_val.url}}"><span class="size-11 text-muted pull-right">(123)</span> {{_val.name}}</a></li>
-                                    {%endfor%}
-
-                                </ul>
-                                {%endif%}
-                            </li>
-                            {%endfor%}
-
-                        </ul>.
-                    </div>
+                <div class="car_attribute_price">
+                  <div class="car_attribute_price_day four_cols">
+                    <span class="single_car_currency">$</span><span class="single_car_price">64</span> <span class="car_unit_day">Per Day</span>
+                  </div>
                 </div>
-
-                <!-- /CATEGORIES -->
-                <div class="panel panel-default hotgoods">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">热卖</h2>
-                    </div>
-                    {%topic data="hotgoods",limit="9",cid=category.id,type="hot",cache="1000"%}
-                    <div class="panel-body padding-10" >
-                        <div class="owl-carousel featured nomargin" data-plugin-options='{"singleItem": true, "stopOnHover":false, "autoPlay":false, "autoHeight": false, "navigation": true, "pagination": false}'>
-                            {%- for items in hotgoods | slice(3) %}
-                                <div><!-- SLIDE 1 -->
-                                    <ul class="list-unstyled nomargin nopadding text-left">
-                                        {%- for item in items %}
-                                        {% set pic = item.pics|strToArray%}
-                                        <li class="clearfix"><!-- item -->
-                                            <div class="thumbnail featured clearfix nomargin" style="height: 150px;overflow: hidden">
-                                                <a href="{{item.name|get_url(item.id)}}" target="_blank">
-                                                    <img src="{{pic[0]|get_pic('m=1,w=140,h=140')}}" width="141" height="141" alt="featured item">
-                                                </a>
-                                            </div>
-                                            <div class="size-16 text-left text-danger">
-                                                ¥{{item.price|get_price_format('1')}}</div>
-                                            <div class="rating rating-5 size-13 width-100 text-left"><!-- rating-0 ... rating-5 --></div>
-                                            <a class="block size-12 elipsis" href="{{item.name|get_url(item.id)}}" target="_blank">{{item.title}}</a>
-
-
-                                        </li><!-- /item -->
-                                        {% if not loop.last%}
-                                        <div class="divider margin-top-6 margin-bottom-6"><!-- divider --></div>
-                                        {%endif%}
-                                        {%- endfor %}
-
-                                    </ul>
-                                </div><!-- /SLIDE 1 -->
-
-                            {%- endfor %}
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- BANNER ROTATOR -->
-                {{13|show_ad('code')|safe}}
-                <!-- /BANNER ROTATOR -->
-
-
-
-
-
-
+                <br class="clear" />
+              </div>
             </div>
-
+          </div>
+          <div class="element grid classic4_cols animated3">
+            <div class="one_fourth gallery4 grid static filterable portfolio_type themeborder" data-id="post-3" style="background-image:url(http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/Porsche-Boxster-Wheels-8-700x466.jpg);">
+              <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/porsche-boxster/"></a>
+              <div class="portfolio_info_wrapper">
+                <div class="car_attribute_wrapper">
+                  <h5>Porsche Boxster</h5>
+                </div>
+                <div class="car_attribute_price">
+                  <div class="car_attribute_price_day four_cols">
+                    <span class="single_car_currency">$</span><span class="single_car_price">180</span> <span class="car_unit_day">Per Day</span>
+                  </div>
+                </div>
+                <br class="clear" />
+              </div>
+            </div>
+          </div>
+          <div class="element grid classic4_cols animated4">
+            <div class="one_fourth gallery4 grid static filterable portfolio_type themeborder" data-id="post-4" style="background-image:url(http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/2016-Mercedes-Benz-GLE-2-700x466.jpg);">
+              <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/mercedes-benz-gle/"></a>
+              <div class="portfolio_info_wrapper">
+                <div class="car_attribute_wrapper">
+                  <h5>Mercedes Benz GLE</h5>
+                </div>
+                <div class="car_attribute_price">
+                  <div class="car_attribute_price_day four_cols">
+                    <span class="single_car_currency">$</span><span class="single_car_price">127</span> <span class="car_unit_day">Per Day</span>
+                  </div>
+                </div>
+                <br class="clear" />
+              </div>
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
-</section>
-<!-- / -->
-
 {% endblock %}
 
 {% block script%}
