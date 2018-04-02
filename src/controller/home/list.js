@@ -31,6 +31,10 @@ module.exports = class extends think.cmswing.center {
       const error = this.controller('cmswing/error');
       return error.noAction('您所在的用户组,禁止访问本栏目！');
     }
+
+    const typevar = await this.getTypevar(9);
+    this.assign('typevar', typevar);
+    
     // 获取当前栏目的模型
     const models = await this.model('cmswing/category').get_category(cate.id, 'model');
     // 获取模型信息

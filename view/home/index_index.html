@@ -112,6 +112,7 @@
 				</div>
 			</div>
 		</div>
+		{#
 		<div class="one withsmallpadding ppb_header_youtube withbg parallax" data-jarallax-video="https://www.youtube.com/watch?v=D3tv6J7tk0k" style="text-align:center;padding:215px 0 215px 0;color:#ffffff;">
 			<div class="overlay_background" style="background:rgba(0,0,0,0.3);"></div>
 			<div class="standard_wrapper">
@@ -130,6 +131,7 @@
 				</div>
 			</div>
 		</div>
+		#}
 		<div class="one withsmallpadding ppb_header " style="text-align:center;padding:60px 0 60px 0;background-color:#5856d6;color:#ffffff;">
 			<div class="standard_wrapper">
 				<div class="page_content_wrapper">
@@ -187,7 +189,7 @@
 					<div class="inner">
 						<div class="inner_wrapper">
 							<div class="blog_grid_wrapper sidebar_content full_width ppb_blog_posts">
-									{% topic data = "slider",limit= "3",position='2',issub="1"%}
+									{% topic data = "slider",limit= "3",position='2',cid="1"%}
 									{%for val in slider%}
 									{%if val.model_id==4%} {% set pic = val.pics|strToArray|first%}{%else%}{%set pic = val.cover_id%}{%endif%}
 								<div class="post type-post hentry status-publish ">
@@ -201,7 +203,7 @@
 											<div class="post_header grid">
 												<div class="post_detail single_post">
 													<span class="post_info_date">
-						<a href="{{val.name|get_url(val.id)}}" title="{{val.name}}">2018年1月12日</a>
+						<a href="{{val.name|get_url(val.id)}}" title="{{val.name}}">{{ val.create_time|moment('YYYY年MM月DD日') }}</a>
 					</span>
 												</div>
 												<h6><a href="{{val.name|get_url(val.id)}}" title="{{val.name}}">{{val.name}}</a></h6>

@@ -171,16 +171,21 @@
     <p><label> 选择租期<br />
     <span class="wpcf7-form-control-wrap pickup-date"><input id="pickup-date" type="text" name="pickup-date" value="mm/dd/yyyy" class="wpcf7-form-control wpcf7-date wpcf7-validates-as-required wpcf7-validates-as-date" aria-required="true" aria-invalid="false" /></span> </label></p>
     
-    <p><input type="submit" value="马上预定" class="wpcf7-form-control wpcf7-submit" /></p>
-    <div class="wpcf7-response-output wpcf7-display-none"></div></form></div>					    	<div class="single_car_booking_divider">
+    <p><input type="submit" value="马上预定" class="wpcf7-submit button" /></p>
+    </form></div>	
+                            {#
+    				    	    <div class="single_car_booking_divider">
                                     <span class="single_car_booking_divider_content">or</span>
                                 </div>
+                                
                                 <div class="single_car_booking_woocommerce_wrapper">
+                                    
                                     <button data-product="132" data-processing="Please wait..." data-url="http://themes.themegoods.com/grandcarrental/demo/wp-admin/admin-ajax.php?action=grandcarrental_add_to_cart&amp;product_id=132" class="single_car_add_to_cart button">Book Instantly</button>
                                 </div>
+                                #}
                                                     <div class="single_car_view_wrapper themeborder">
                                 <div class="single_car_view_desc">
-                                    This car&#039;s been viewed&nbsp;{{info.view}}&nbsp;times in the past week			    			</div>
+                                    这个产品已经被访问了&nbsp;{{info.view}}&nbsp;次			    			</div>
                                 
                                 <div class="single_car_view_icon ti-alarm-clock"></div>
                             </div>
@@ -220,25 +225,25 @@
         
                  <br class="clear"/>
               <div class="car_related">
-            <h3 class="sub_title">Similar cars</h3>
+            <h3 class="sub_title">更多推荐</h3>
                 <div id="portfolio_filter_wrapper" class="gallery classic three_cols portfolio-content section content clearfix" data-columns="3">
+                {%topic data="moregoods",limit="3",isstu=1,type="hot",where="{\"id\":[\"<>\",322]}",cache="1000"%}
+                {%- for item in moregoods %}
+                {% set pic = item.pics|strToArray%}
                     <div class="element grid classic3_cols">
-                <div class="one_third gallery3 classic static filterable portfolio_type themeborder" data-id="post-149">
+                        <div class="one_third gallery3 classic static filterable portfolio_type themeborder" data-id="post-149">
                             
-                            <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/bmw-x6/">
-                                <img src="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/bmw-x6-2015-41-700x466.jpg" alt="BMW X6" />
+                            <a class="car_image" href="{{item.name|get_url(item.id)}}">
+                                <img src="{{pic[0]|get_pic('m=1,w=260,h=260')}}" />
                                                         </a>
                             
                             <div class="portfolio_info_wrapper">
                                 <div class="car_attribute_wrapper">
-                                    <a class="car_link" href="http://themes.themegoods.com/grandcarrental/demo/car/bmw-x6/"><h4>BMW X6</h4></a>
+                                    <a class="car_link" href="{{item.name|get_url(item.id)}}"><h4>{{item.title}}</h4></a>
                                                                         <div class="car_attribute_rating">
-                                                                                <div class="br-theme-fontawesome-stars-o">
-                                                <div class="br-widget">
-                                    <a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;"></a>											</div>
-                                            </div>
+                                                                                
                                                                             <div class="car_attribute_rating_count">
-                                                4&nbsp;
+                                                {{item.view}}&nbsp;
                                                 reviews										</div>
                                                                         </div>
                                                                     
@@ -265,113 +270,15 @@
                                                                 </div>
                                 <div class="car_attribute_price">
                                                                     <div class="car_attribute_price_day three_cols">
-                                        <span class="single_car_currency">$</span><span class="single_car_price">170</span>			        				<span class="car_unit_day">Per Day</span>
+                                        <span class="single_car_currency">¥</span><span class="single_car_price">{{item.zujin}}</span>			        				<span class="car_unit_day">每天</span>
                                     </div>
                                                                 </div>
                                 <br class="clear"/>
                             </div>
                                 </div>
             </div>
-                    <div class="element grid classic3_cols">
-                <div class="one_third gallery3 classic static filterable portfolio_type themeborder" data-id="post-260">
-                            
-                            <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/mini-countryman/">
-                                <img src="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/535a980f75319ea470a7306d90ae1524_XL-700x466.jpg" alt="MINI Countryman" />
-                                                        </a>
-                            
-                            <div class="portfolio_info_wrapper">
-                                <div class="car_attribute_wrapper">
-                                    <a class="car_link" href="http://themes.themegoods.com/grandcarrental/demo/car/mini-countryman/"><h4>MINI Countryman</h4></a>
-                                                                        <div class="car_attribute_rating">
-                                                                                <div class="br-theme-fontawesome-stars-o">
-                                                <div class="br-widget">
-                                    <a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;"></a>											</div>
-                                            </div>
-                                                                            <div class="car_attribute_rating_count">
-                                                4&nbsp;
-                                                reviews										</div>
-                                                                        </div>
-                                                                    
-                                                                        <div class="car_attribute_wrapper_icon">
-                                                                                        <div class="one_fourth">
-                                                    <div class="car_attribute_icon ti-user"></div>
-                                                    <div class="car_attribute_content">
-                                                    4												</div>
-                                                </div>
-                                                                                    
-                                                                                        <div class="one_fourth">
-                                                    <div class="car_attribute_icon ti-briefcase"></div>
-                                                    <div class="car_attribute_content">
-                                                        2												</div>
-                                                </div>
-                                                                                    
-                                                                                        <div class="one_fourth">
-                                                    <div class="car_attribute_icon ti-panel"></div>
-                                                    <div class="car_attribute_content">
-                                                        Auto												</div>
-                                                </div>
-                                                                                    
-                                        </div><br class="clear"/>
-                                                                </div>
-                                <div class="car_attribute_price">
-                                                                    <div class="car_attribute_price_day three_cols">
-                                        <span class="single_car_currency">$</span><span class="single_car_price">95</span>			        				<span class="car_unit_day">Per Day</span>
-                                    </div>
-                                                                </div>
-                                <br class="clear"/>
-                            </div>
-                                </div>
-            </div>
-                    <div class="element grid classic3_cols">
-                <div class="one_third gallery3 classic static filterable portfolio_type themeborder" data-id="post-151">
-                            
-                            <a class="car_image" href="http://themes.themegoods.com/grandcarrental/demo/car/lexus-rx-350/">
-                                <img src="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/2016-Lexus-RX-350-BM-01-700x466.jpg" alt="Lexus RX 350" />
-                                                        </a>
-                            
-                            <div class="portfolio_info_wrapper">
-                                <div class="car_attribute_wrapper">
-                                    <a class="car_link" href="http://themes.themegoods.com/grandcarrental/demo/car/lexus-rx-350/"><h4>Lexus RX 350</h4></a>
-                                                                        <div class="car_attribute_rating">
-                                                                                <div class="br-theme-fontawesome-stars-o">
-                                                <div class="br-widget">
-                                    <a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;" class="br-selected"></a><a href="javascript:;"></a><a href="javascript:;"></a>											</div>
-                                            </div>
-                                                                            <div class="car_attribute_rating_count">
-                                                4&nbsp;
-                                                reviews										</div>
-                                                                        </div>
-                                                                    
-                                                                        <div class="car_attribute_wrapper_icon">
-                                                                                        <div class="one_fourth">
-                                                    <div class="car_attribute_icon ti-user"></div>
-                                                    <div class="car_attribute_content">
-                                                    5												</div>
-                                                </div>
-                                                                                    
-                                                                                        <div class="one_fourth">
-                                                    <div class="car_attribute_icon ti-briefcase"></div>
-                                                    <div class="car_attribute_content">
-                                                        4												</div>
-                                                </div>
-                                                                                    
-                                                                                        <div class="one_fourth">
-                                                    <div class="car_attribute_icon ti-panel"></div>
-                                                    <div class="car_attribute_content">
-                                                        Auto												</div>
-                                                </div>
-                                                                                    
-                                        </div><br class="clear"/>
-                                                                </div>
-                                <div class="car_attribute_price">
-                                                                    <div class="car_attribute_price_day three_cols">
-                                        <span class="single_car_currency">$</span><span class="single_car_price">110</span>			        				<span class="car_unit_day">Per Day</span>
-                                    </div>
-                                                                </div>
-                                <br class="clear"/>
-                            </div>
-                                </div>
-            </div>
+            {%- endfor %}
+                    
                     </div>
               </div>
            

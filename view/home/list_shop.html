@@ -4,45 +4,46 @@
 {% endblock %}
 {% block content %}
 {%set cate = category.id|get_cate()%}
+{%column data="column",pid=45%}
 
 <div id="page_caption" class="hasbg parallax  withtopbar  " style="height:300px;background-image:url(/static/assets/images/IMG_3496bfree.jpg);"></div>
 
 <div id="page_content_wrapper" class="hasbg withtopbar ">
-    <form id="car_search_form" name="car_search_form" method="get" action="http://themes.themegoods.com/grandcarrental/demo/car-grid-right-sidebar/">
+    <form id="car_search_form" class="car_search_form" method="get">
         <div class="car_search_wrapper">
           <div class="one_fourth themeborder">
-            <select id="brand" name="brand">
-              <option value="">Any Brand</option>
-              <option value="Audi">Audi</option>
-              <option value="BMW">BMW</option>
-              <option value="Lexus">Lexus</option>
-              <option value="Mercedes Benz">Mercedes Benz</option>
-              <option value="MINI">MINI</option>
-              <option value="Porsche">Porsche</option>
+            <select id="sch_brand" name="brand">
+              <option value="">品牌</option>
+              {%for val in typevar%}
+              {%if val.optionid == 26%}
+              {%for r in val.rules%}
+              <option value="{{r.id}}">{{r.name}}</option>
+              {%endfor%}
+              {%endif%}
+              {%endfor%}
             </select>
             <span class="ti-angle-down"></span>
           </div>
           <div class="one_fourth themeborder">
-            <select id="type" name="type">
-              <option value="">Any Type</option>
-              <option value="Coupe">Coupe</option>
-              <option value="Sedan">Sedan</option>
-              <option value="SUV">SUV</option>
+            <select id="sch_type" name="type">
+              <option value="">类型</option>
+              {%for val in column%}
+              <option value="{{val.id}}">{{val.name}}</option>
+              {%endfor%}
             </select>
             <span class="ti-angle-down"></span>
           </div>
           <div class="one_fourth themeborder">
-            <select id="sort_by" name="sort_by">
-              <option value="price_low">Price Low to High</option>
-              <option value="price_high">Price High to Low</option>
-              <option value="model">Sort By Model</option>
-              <option value="popular">Sort By Popularity</option>
-              <option value="review">Sort By Review Score</option>
+            <select id="sch_sort_by" name="sort_by">
+              <option value="8">租金由高到低</option>
+              <option value="9">租金由低到高</option>
+              <option value="10">按销量排序</option>
+              <option value="2">按评分排序</option>
             </select>
             <span class="ti-exchange-vertical"></span>
           </div>
           <div class="one_fourth last themeborder">
-            <input id="car_search_btn" type="submit" class="button" value="Search" />
+            <input id="car_search_btn" type="submit" class="button" value="搜索" />
           </div>
         </div>
     </form>
@@ -121,6 +122,7 @@
                           {%- endfor %}
                         </ul>
                       </li>
+                      
                       <li id="grandcarrental_instagram-3" class="widget grandcarrental_Instagram">
                         <h2 class="widgettitle">Recent Trips</h2>
                         <ul class="flickr">
@@ -136,6 +138,7 @@
                         </ul>
                         <br class="clear" />
                       </li>
+                      
                       <li id="grandcarrental_social_profiles_posts-3" class="widget grandcarrental_Social_Profiles_Posts">
                         <h2 class="widgettitle">Connect with Us</h2>
                         <div class="social_wrapper shortcode light small">
@@ -159,6 +162,7 @@
 </div>
 
 <br class="clear" />
+{#
     <div class="car_recently_view">
       <div class="standard_wrapper">
         <h3 class="sub_title">Recently View Cars</h3>
@@ -230,6 +234,7 @@
         </div>
       </div>
     </div>
+    #}
 {% endblock %}
 
 {% block script%}
