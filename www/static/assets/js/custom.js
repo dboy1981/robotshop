@@ -58,7 +58,6 @@ jQuery(document).ready(function(){
 		}
 	});
 	
-	jQuery(document).setiLightbox();
     
     jQuery('#menu_expand_wrapper a').on( 'click', function(){
     	jQuery('#menu_wrapper').fadeIn();

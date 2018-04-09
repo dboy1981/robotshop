@@ -2,6 +2,10 @@
 {% block style %}
 <link rel="stylesheet" href="/static/assets/plugins/jquery-daterangepicker/daterangepicker.min.css">
 <link rel='stylesheet' href='/static/assets/plugins/share/css/share.min.css' type='text/css' media='all' />
+
+<link rel="stylesheet"  href="/static/assets/plugins/fancybox/jquery.fancybox.min.css" />
+
+
 {% endblock %}
 {% block content %}
 {% set pic = info.pics|strToArray%}
@@ -12,17 +16,14 @@
 	
 	<div class="single_car_header_button">
 		<div class="standard_wrapper">
-						<a href="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/nw6xremkxkg-nicolai-berntsen.jpg" id="single_car_gallery_open" class="button fancy-gallery"><span class="ti-camera"></span>View Photos</a>
+						<a href="javascript:;" id="single_car_gallery_open" class="button fancy-gallery" data-trigger="gallery"><span class="ti-camera"></span>View Photos</a>
 			<div style="display:none;">
-								 <a id="single_car_gallery_image1" href="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/traffic-car-vehicle-black.jpg" title="" class="fancy-gallery"></a>
-								 <a id="single_car_gallery_image2" href="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/evening.jpg" title="" class="fancy-gallery"></a>
-								 <a id="single_car_gallery_image3" href="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/IMG_3496bfree.jpg" title="The road to success and the road to failure are almost exactly the same" class="fancy-gallery"></a>
-								 <a id="single_car_gallery_image4" href="http://themegoodsthemes-pzbycso8wng.stackpathdns.com/grandcarrental/demo/wp-content/uploads/2017/01/road-people-street-smartphone.jpg" title="" class="fancy-gallery"></a>
+                                {% for val in pic%}
+								 <a href="{{val|get_pic('m=1,w=800,h=800')}}" title="" data-fancybox="gallery"></a>
+                                {% endfor %}
 							</div>
 						
-						<a href="#video_review153" id="single_car_video_review_open" class="button" data-type="inline"><span class="ti-control-play"></span>Video Review</a>
-			
-			<div id="video_review153" class="car_video_review_wrapper" style="display:none;"><iframe width="1280" height="720" src="https://www.youtube.com/embed/6avYpOnKW6c" frameborder="0" allowfullscreen></iframe></div>
+						
 					</div>
 	</div>
 	
@@ -227,7 +228,7 @@
               <div class="car_related">
             <h3 class="sub_title">更多推荐</h3>
                 <div id="portfolio_filter_wrapper" class="gallery classic three_cols portfolio-content section content clearfix" data-columns="3">
-                {%topic data="moregoods",limit="3",isstu=1,type="hot",where="{\"id\":[\"<>\",322]}",cache="1000"%}
+                {%topic data="moregoods",limit="3",isstu=1,type="hot",where="{\"id\":[\"<>\", " + info.id + "]}",cache="1000"%}
                 {%- for item in moregoods %}
                 {% set pic = item.pics|strToArray%}
                     <div class="element grid classic3_cols">
@@ -293,6 +294,7 @@
 <script type="text/javascript" src="/static/assets/plugins/bootstrap.daterangepicker/moment.min.js"></script>
 <script type="text/javascript" src="/static/assets/plugins/jquery-daterangepicker/jquery.daterangepicker.min.js"></script>
 <script type="text/javascript" src="/static/assets/js/view/demo.shop.js"></script>
+<script src="/static/assets/plugins/fancybox/jquery.fancybox.min.js"></script>
 <script>
     var shortest = Number($('#shortest').html());
     var start = moment().add(1, 'days');

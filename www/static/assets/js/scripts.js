@@ -949,7 +949,7 @@ function _cart() {
   if (_container.length > 0) {
     loadScript(plugin_path + 'jquery-fly/jquery.fly.min.js', function() {
       var offset = $('.ti-shopping-cart').offset(); // 结束的地方的元素
-      console.log(offset);
+      //console.log(offset);
       $('.wpcf7-submit').click(function(event) {
         event.preventDefault();
         var addcar = $(this);
