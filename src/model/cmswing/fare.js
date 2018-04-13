@@ -41,7 +41,7 @@ module.exports = class extends think.Model {
     }else {
       fare = await this.where({is_default: 1}).find();
     }
-    console.log(fare);
+    // console.log(fare);
     const zoning = JSON.parse(fare.zoning);
     if (think.isEmpty(zoning) || think.isEmpty(address)) {
       real_freight = fare.first_price + Math.max(Math.ceil((goods_weight - fare.first_weight) / fare.second_weight), 0) * fare.second_price;

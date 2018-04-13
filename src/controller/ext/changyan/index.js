@@ -38,7 +38,7 @@ module.exports = class extends think.cmswing.extIndex {
         'is_login': 0// 为登录
       };
     }
-    console.log(ret);
+    // console.log(ret);
     return this.jsonp(ret);
   }
   // 用户登录接口
@@ -50,14 +50,14 @@ module.exports = class extends think.cmswing.extIndex {
     get.profile_url = decodeURIComponent(get.profile_url);
     get.nickname = decodeURIComponent(get.nickname);
 
-    console.log(get);
-    console.log(this.cysign(cy_appkey, get.cy_user_id, get.img_url, get.nickname, get.profile_url, get.user_id));
+    // console.log(get);
+    // console.log(this.cysign(cy_appkey, get.cy_user_id, get.img_url, get.nickname, get.profile_url, get.user_id));
     const cy_user = await this.model('ext_changyan').where({cy_user_id: get.cy_user_id}).find();
     if (think.isEmpty(cy_user)) {
       await this.model('ext_changyan').add(get);
     }
     const uid = await this.model('ext_changyan').where({cy_user_id: get.cy_user_id}).getField('uid', true);
-    console.log(uid);
+    // console.log(uid);
     // return false;
     let ret;
     if (!this.is_login) {
@@ -142,7 +142,7 @@ module.exports = class extends think.cmswing.extIndex {
     data.reg_time = new Date().valueOf();
     data.reg_ip = _ip2int(this.ip);
     data.password = encryptPassword(data.password);
-    console.log(data);
+    // console.log(data);
     const resurl = this.cookie('changyanurl');
     const reg = await this.model('member').add(data);
     if (!think.isEmpty(reg)) {
@@ -155,7 +155,7 @@ module.exports = class extends think.cmswing.extIndex {
         await this.spiderImage(data.headimgurl, filePath + '/avatar.png');
       }
     }
-    console.log(data);
+    // console.log(data);
     await this.model('cmswing/member').autoLogin({id: reg}, this.ip);// 更新用户登录信息，自动登陆
     const wx_userInfo = {
       'uid': reg,
@@ -172,7 +172,7 @@ module.exports = class extends think.cmswing.extIndex {
     const username = this.post('username');
     let password = this.post('password');
     password = encryptPassword(password);
-    console.log(data);
+    // console.log(data);
     const resurl = this.cookie('changyanurl');
     const res = await this.model('cmswing/member').signin(username, password, this.ip, 5, 0);
     if (res.uid > 0) {

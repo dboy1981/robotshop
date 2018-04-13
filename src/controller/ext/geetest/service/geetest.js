@@ -25,7 +25,7 @@ module.exports = class extends think.Service {
         if (err) {
           deferred.reject(err);
         }
-        console.log(data);
+        // console.log(data);
         if (!data.success) {
           // 进入 failback，如果一直进入此模式，请检查服务器到极验服务器是否可访问
           // 可以通过修改 hosts 把极验服务器 api.geetest.com 指到不可访问的地址
@@ -61,7 +61,7 @@ module.exports = class extends think.Service {
     });
     let fallback = await ctx.session('fallback');
     fallback = !!fallback;
-    console.log(fallback);
+    // console.log(fallback);
     // 验证
     const validate = () => {
       const deferred = think.defer();
@@ -88,7 +88,7 @@ module.exports = class extends think.Service {
         geetest_validate: data.geetest_validate,
         geetest_seccode: data.geetest_seccode
       }, function(err, success) {
-        console.log(err);
+        // console.log(err);
         let res = {};
         if (err) {
           // 网络错误

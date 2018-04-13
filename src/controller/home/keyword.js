@@ -87,7 +87,7 @@ module.exports = class extends think.cmswing.center {
           }).order('c.id DESC').countSelect();
       }
     } else {
-      console.log(2222222);
+      // console.log(2222222);
       list = await this.model('keyword_data').where({tagid: topic.id, mod_type: 0}).page(this.get('page'), 10)
         .join({
           table: 'document',
@@ -99,7 +99,7 @@ module.exports = class extends think.cmswing.center {
 
     const html = this.pagination(list);
     this.assign('pagination', html);
-    console.log(list);
+    // console.log(list);
     this.assign('list', list);
     // 该主题是否被关注。
     if (this.is_login) {

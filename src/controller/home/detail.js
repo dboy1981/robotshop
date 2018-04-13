@@ -247,7 +247,7 @@ module.exports = class extends think.cmswing.center {
       const pan = info.panurl.split('\r\n');
       for (const v of pan) {
         const varr = v.split('|');
-        console.log(varr[1]);
+        // console.log(varr[1]);
         if (!think.isEmpty(varr[2]) && think._.trim(id[2]) == think._.trim(varr[1])) {
           this.assign({
             title: varr[0],

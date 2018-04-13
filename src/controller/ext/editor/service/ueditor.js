@@ -40,7 +40,7 @@ module.exports = class extends think.Service {
   upFile() {
     const http = this.http;
     const file = http.file(this.fileField);
-    console.log(file);
+    // console.log(file);
     if (!think.isFile(file.path)) {
       this.stateInfo = '找不到临时文件';
       return;

@@ -83,7 +83,7 @@ module.exports = class extends think.Model {
     }
     // console.log(data);
     data = data || null;
-    console.log(data);
+    // console.log(data);
     // 检查文档类型是否符合要求
     const type = data.type || 2;
     const pid = data.pid;

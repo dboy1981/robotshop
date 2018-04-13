@@ -77,7 +77,7 @@ module.exports = class extends think.cmswing.extAdmin {
     } else {
       const id = this.get('id');
       const link = await this.model('ext_link').find(id);
-      console.log(link);
+      // console.log(link);
       this.assign('link', link);
       // 获取当前插件的分类
       this.assign('type', await this.gettype());

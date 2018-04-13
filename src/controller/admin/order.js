@@ -276,7 +276,7 @@ module.exports = class extends think.cmswing.admin {
       // 获取购买人信息
       // 购买人信息
       const user = await this.model('member').find(order.user_id);
-      console.log(user);
+      // console.log(user);
       this.assign('user', user);
       // 订单信息
       switch (order.payment) {
@@ -367,7 +367,7 @@ module.exports = class extends think.cmswing.admin {
       this.assign('user', user);
       sum = eval(sum.join('+'));
       this.assign('sum', sum);
-      console.log(goods);
+      // console.log(goods);
       this.assign('goods', goods);
       this.assign('order', order);
       this.meta_title = '发货';

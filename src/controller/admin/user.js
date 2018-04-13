@@ -120,7 +120,7 @@ module.exports = class extends think.cmswing.admin {
       } else {
         data.overduedate = think.isEmpty(data.overduedate) ? 0 : data.overduedate;
       }
-      console.log(data);
+      // console.log(data);
       // return this.fail("ddd")
       data.status = 1;
       const self = this;

@@ -239,8 +239,8 @@ module.exports = class extends think.cmswing.admin {
   async delselfmenuAction() {
     const m_id = this.post('m_id');
     const pid = this.post('pid');
-    console.log(m_id);
-    console.log(pid);
+    // console.log(m_id);
+    // console.log(pid);
     const menu_model = this.model('wx_menu');
     const res = await menu_model.where({m_id: ['=', m_id]}).delete();
     if (res) {

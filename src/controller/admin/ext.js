@@ -64,7 +64,7 @@ module.exports = class extends think.cmswing.admin {
     for (const extName of uniarr) {
       unilist.push(think.app.controllers[`ext/${extName}/config`]);
     }
-    console.log(unilist);
+    // console.log(unilist);
     this.assign('list', unilist);
     this.meta_title = '未安装的插件';
     this.active = 'admin/ext/index';
@@ -78,7 +78,7 @@ module.exports = class extends think.cmswing.admin {
     if (this.isPost) {
       const data = this.post();
       data.installtime = new Date().getTime();
-      console.log(data);
+      // console.log(data);
       // 生成插件目录
       const extdir = `${think.ROOT_PATH}/src/controller/ext`;
       const extpath = `${extdir}/${data.ext}`;
@@ -162,7 +162,7 @@ module.exports = class extends think.cmswing.admin {
         }
         for (const v of data.hooks) {
           const type = await this.model('hooks').where({name: v}).getField('type', true);
-          console.log(type);
+          // console.log(type);
           if (Number(type) === 1) {
             hookaction.push(`/**
    * 实现的AdminIndex钩子方法

@@ -58,7 +58,7 @@ module.exports = class extends think.cmswing.admin {
             if (!think.isEmpty(val.option.rules)) {
               val.option.rules = JSON.parse(val.option.rules);
               val.rules = parse_type_attr(val.option.rules.choices);
-              console.log(val.rules);
+              // console.log(val.rules);
               for (const v of val.rules) {
                 v.id = 'l>' + v.id;
               }
@@ -351,7 +351,7 @@ module.exports = class extends think.cmswing.admin {
       // console.log(map);
     }
     // console.log(map);
-    console.log(field);
+    // console.log(field);
     let list;
     if (!think.isEmpty(sortval)) {
       list = await Document.alias('DOCUMENT').join({
@@ -789,7 +789,7 @@ module.exports = class extends think.cmswing.admin {
       for (const v of data) {
         // 添加到搜索
         await this.model('cmswing/search').addsearch(v.model_id, v.id, v);
-        console.log(v.keyname);
+        // console.log(v.keyname);
         if (!think.isEmpty(v.keyname) || v.keyname != 0) {
           await this.model('cmswing/keyword').addkey(v.keyname, v.id, v.uid, v.model_id, 0);
         }

@@ -169,7 +169,7 @@ module.exports = class extends think.cmswing.center {
 
     const rnd = this.rndNumber(6);
     await this.session('vcode', rnd);
-    console.log(rnd);
+    // console.log(rnd);
     //var sms = this.service('cmswing/sms');
     //await sms.send(mobile, `【趣租机】您的验证码是${rnd}。如非本人操作，请忽略本短信`);
     return this.success();

@@ -103,8 +103,8 @@ module.exports = class extends think.cmswing.modIndex {
     this.assign('category', cate);
     this.assign('list', data.data);
     this.assign('count', data.count);
-    console.log(this.ctx.controller);
-    console.log(this.ctx.action);
+    // console.log(this.ctx.controller);
+    // console.log(this.ctx.action);
 
     // 跨屏
     if (this.isMobile) {

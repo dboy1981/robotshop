@@ -86,7 +86,7 @@ module.exports = class extends think.Service {
       app: {id: setup.PINGXX_APP_ID},
       extra: extra
     };
-    console.log(config);
+    // console.log(config);
     function create(pingpp, config) {
       const deferred = think.defer();
       pingpp.charges.create(config, function(err, charge) {

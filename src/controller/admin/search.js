@@ -171,7 +171,7 @@ module.exports = class extends think.cmswing.admin {
           }
           narr.push(obj);
         }
-        console.log('wwww' + narr);
+        // console.log('wwww' + narr);
         await this.model('search').addMany(narr);
         if (olist.totalPages > olist.currentPage) {
           const page = {'id': id, 'page': olist.currentPage + 1, 'pagesize': olist.numsPerPage};

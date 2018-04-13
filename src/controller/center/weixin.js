@@ -48,7 +48,7 @@ module.exports = class extends think.cmswing.center {
       this.cookie('cmswing_wx_url', this.ctx.url);
       const pingpp = require('pingpp')(this.config('setup.wx_AppSecret'));
       const oauthUrl = pingpp.wxPubOauth.createOauthUrlForCode(this.config('setup.wx_AppID'), `http://${this.ctx.host}/center/weixin/getopenid?showwxpaytitle=1`);
-      console.log(oauthUrl);
+      // console.log(oauthUrl);
       return this.redirect(oauthUrl);
     }
   }
@@ -57,7 +57,7 @@ module.exports = class extends think.cmswing.center {
     const pingpp = require('pingpp')(this.config('setup.wx_AppSecret'));
     // 获取用户openid
     const code = this.get('code');
-    console.log(code);
+    // console.log(code);
     // 获取openid
     const getopenid = () => {
       const deferred = think.defer();
@@ -76,7 +76,7 @@ module.exports = class extends think.cmswing.center {
     // console.log(userinfo);
     // 如果没有关注先跳到关注页面
     if (userinfo.subscribe == 0) {
-      console.log(1111111111111);
+      // console.log(1111111111111);
       return this.redirect('/center/weixin/follow');
     };
     userinfo.subscribe_time = userinfo.subscribe_time * 1000;
@@ -214,7 +214,7 @@ module.exports = class extends think.cmswing.center {
       think.mkdir(filePath);
       await this.spiderImage(data.headimgurl, filePath + '/avatar.png');
     }
-    console.log(data);
+    // console.log(data);
     await this.model('cmswing/member').autoLogin({id: reg}, this.ip);// 更新用户登录信息，自动登陆
     const wx_userInfo = {
       'uid': reg,
@@ -233,7 +233,7 @@ module.exports = class extends think.cmswing.center {
     const username = this.post('username');
     let password = this.post('password');
     password = encryptPassword(password);
-    console.log(data);
+    // console.log(data);
 
     const res = await this.model('cmswing/member').signin(username, password, this.ip, 5, 0);
     if (res.uid > 0) {

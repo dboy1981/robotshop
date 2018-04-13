@@ -27,7 +27,7 @@ module.exports = class extends think.Model {
       if (create) {
         // 新增表字段
         const res = await this.addField(data);
-        console.log(res);
+        // console.log(res);
         // return false;
         if (!res) {
           this.delete(id);
@@ -75,7 +75,7 @@ module.exports = class extends think.Model {
     let sql;
     if (!table_exist) {
       const model_info = await this.model('model').where({id: mod_id}).field('engine_type,need_pk').find();
-      console.log(model_info);
+      // console.log(model_info);
       if (model_info.need_pk) {
         sql = ` CREATE TABLE IF NOT EXISTS \`${this.table_name}\` (
                 \`id\`  int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键' ,

@@ -107,7 +107,7 @@ module.exports = class extends think.Controller {
     msg = think.extend({ 'success': '操作成功！', 'error': '操作失败！', 'url': '', 'ajax': this.isAjax() }, msg);
     const res = await this.model(model).where(where).update(data);
     if (res) {
-      console.log(model);
+      // console.log(model);
       switch (model) {
         case 'channel':// 更新频道缓存信息
           await update_cache('channel');// 更新频道缓存信息
@@ -409,7 +409,7 @@ module.exports = class extends think.Controller {
           if (!think.isEmpty(val.option.rules)) {
             val.option.rules = JSON.parse(val.option.rules);
             val.rules = parse_type_attr(val.option.rules.choices);
-            console.log(val.rules);
+            // console.log(val.rules);
             for (const v of val.rules) {
               v.id = 'l>' + v.id;
             }

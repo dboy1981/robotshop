@@ -41,7 +41,7 @@ module.exports = class extends think.cmswing.admin {
     if (this.isPost) {
       const data = this.post();
       data.update_time = new Date().getTime();
-      console.log(data);
+      // console.log(data);
       const res = await this.model('hooks').update(data);
       await update_cache('hooks');
       return res ? this.success({name: '更新成功!', url: '/admin/hooks/index'}) : this.fail('更新失败!');

@@ -55,7 +55,7 @@ module.exports = class extends think.cmswing.center {
       const variables = await this.model('mysql').query(`show variables`);
       const ft_min_word_len = think._.find(variables, ['Variable_name', 'ft_min_word_len']).Value;
       if (ft_min_word_len == 1) {
-        console.log(segment_q.join(' '));
+        // console.log(segment_q.join(' '));
         sql = '';
         sql = `MATCH (data) AGAINST ('${segment_q.join(' ')}' IN BOOLEAN MODE)`;
         if (m_id) {

@@ -126,7 +126,7 @@ module.exports = class extends think.cmswing.admin {
           });
         }
       }
-      console.log(obj);
+      // console.log(obj);
       const order = think._.values(obj);
       // console.log(order);
       const orderbgy = think._.orderBy(order, ['group', 'sort'], ['asc', 'asc']);
@@ -155,12 +155,12 @@ module.exports = class extends think.cmswing.admin {
   // 未安装的独立模型
   async extunAction() {
     const dir = think.getdirFiles(`${think.APP_PATH}/controller/mod`);
-    console.log(dir);
+    // console.log(dir);
     const modarr = [];
     for (const v of dir) {
       modarr.push(think._.head(think._.split(v, path.sep, 1)));
     }
-    console.log(modarr);
+    // console.log(modarr);
     // 找出未安装的插件
     const uniarr = [];
     for (const d of think._.uniq(modarr)) {
@@ -176,7 +176,7 @@ module.exports = class extends think.cmswing.admin {
     for (const modName of uniarr) {
       unilist.push(think.app.controllers[`mod/${modName}/config`]);
     }
-    console.log(unilist);
+    // console.log(unilist);
     this.assign('list', unilist);
     this.meta_title = '未安装的模型';
     this.tactive = 'ext';
@@ -288,7 +288,7 @@ module.exports = class extends think.cmswing.admin {
         }
         for (const v of data.hooks) {
           const type = await this.model('hooks').where({name: v}).getField('type', true);
-          console.log(type);
+          // console.log(type);
           if (Number(type) === 1) {
             hookaction.push(`/**
    * 实现的AdminIndex钩子方法
@@ -358,7 +358,7 @@ module.exports = class extends think.cmswing.modIndex {
       if (think.isArray(post.attribute_list)) {
         post.attribute_list = post.attribute_list.join(',');
       }
-      console.log(post);
+      // console.log(post);
       if (!think.isEmpty(post.hooks) && think.isArray(post.hooks)) {
         post.hooks = post.hooks.join(',');
       }
@@ -467,7 +467,7 @@ module.exports = class extends think.cmswing.modIndex {
   async unextAction() {
     const id = this.get('id');
     const m = await this.model('model').find(id);
-    console.log(m);
+    // console.log(m);
     // 删除该模型的数据库表
     if (!think.isEmpty(m.table)) {
       await this.deltable(m.table.split(','), m.name);

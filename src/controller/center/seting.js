@@ -32,7 +32,7 @@ module.exports = class extends think.cmswing.center {
     await this.weblogin();
     // 获取用户信息
     const userInfo = await this.model('member').find(this.user.uid);
-    console.log(userInfo);
+    // console.log(userInfo);
     // console.log(userInfo);
     this.assign('userInfo', userInfo);
     let province, city, county;
@@ -137,7 +137,7 @@ module.exports = class extends think.cmswing.center {
     let res;
     if (this.isMobile) {
       const jimp2 = () => {
-        console.log(111);
+        // console.log(111);
         const deferred = think.defer();
         const self = this;
         Jimp.read(filepath, function(err, lenna) {

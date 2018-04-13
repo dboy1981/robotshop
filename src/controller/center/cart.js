@@ -35,7 +35,7 @@ module.exports = class extends think.cmswing.center {
       return this.fail('请先登录');
     }
     const data = this.post();
-    console.log(data);
+    // console.log(data);
     const ids = data.ids.split('||');
     // 检查库存
     const stock = await this.model('cmswing/order').getstock(ids[0], ids[1]);
@@ -71,7 +71,7 @@ module.exports = class extends think.cmswing.center {
       }
     } else {
       const ids = this.get('ids');
-      console.log(ids);
+      // console.log(ids);
       if (think.isEmpty(ids)) {
         return this.fail('选择要删除的商品');
       }
@@ -97,7 +97,7 @@ module.exports = class extends think.cmswing.center {
     if (data.qty > stock) {
       return this.json(false);
     }
-    console.log(data);
+    // console.log(data);
     // return false;
     const arr = [];
     const cart = this.cart.data;
@@ -106,7 +106,7 @@ module.exports = class extends think.cmswing.center {
       arr.push(data);
     } else {
       // cart = JSON.parse(cart);
-      console.log(cart);
+      // console.log(cart);
       const typearr = [];
       const idarr = [];
       // 已有购物车数量相加
@@ -268,7 +268,7 @@ module.exports = class extends think.cmswing.center {
     }
     this.assign('check_goods', check_goods);
     //   console.log(cart_goods);
-    console.log(check_goods);
+    // console.log(check_goods);
     // 应付金额
     const parr = [];
     const nums = [];
@@ -349,7 +349,7 @@ module.exports = class extends think.cmswing.center {
     }
     // 去重
     farr = think._.uniq(farr);
-    console.log(farr);
+    // console.log(farr);
     const cgarr = [];
     for (const fa of farr) {
       const fobj = {};
@@ -467,7 +467,7 @@ module.exports = class extends think.cmswing.center {
     data.order_no = await this.model('cmswing/order').orderid(this.user.uid);
     // 添加送货地址
     const address = await this.model('address').fieldReverse('id,user_id,is_default').find(data.address);
-    console.log(address);
+    // console.log(address);
     data = think.extend(data, address);
 
     // 应付金额
@@ -475,7 +475,7 @@ module.exports = class extends think.cmswing.center {
     for (const val of isgoods) {
       parr.push(val.price);
     }
-    console.log(parr);
+    // console.log(parr);
     real_amount = eval(parr.join('+'));
     data.real_amount = real_amount;
 
@@ -490,7 +490,7 @@ module.exports = class extends think.cmswing.center {
     let farr = [];
     for (const cg of isgoods) {
       cg.fare = await this.model('document_shop').where({id: cg.product_id}).getField('fare', true);
-      console.log(cg.fare);
+      // console.log(cg.fare);
       if (Number(cg.fare) !== 0) {
         const isd = await this.model('fare').where({id: cg.fare}).getField('is_default', true);
         if (isd === 1) {
@@ -501,7 +501,7 @@ module.exports = class extends think.cmswing.center {
     }
     // 去重
     farr = think._.uniq(farr);
-    console.log(farr);
+    // console.log(farr);
     const cgarr = [];
     for (const fa of farr) {
       const fobj = {};
@@ -514,10 +514,10 @@ module.exports = class extends think.cmswing.center {
     const rarr = [];
     for (const r of cgarr) {
       const rf = await this.model('cmswing/fare').getfare(r.cg, data.address, this.user.uid, r.id);
-      console.log(rf);
+      // console.log(rf);
       rarr.push(rf);
     }
-    console.log(rarr);
+    // console.log(rarr);
     data.real_freight = think._.sum(rarr);
 
     // data.real_freight = await this.model('cmswing/fare').getfare(isgoods, data.address, this.user.uid); ;
@@ -540,7 +540,7 @@ module.exports = class extends think.cmswing.center {
 
     // 储存宝贝
     // let order_id = 22;
-    console.log(isgoods);
+    // console.log(isgoods);
     const ngoods = [];
     for (const goods of isgoods) {
       const newgoods = {};
@@ -552,9 +552,9 @@ module.exports = class extends think.cmswing.center {
       newgoods.prom_goods = JSON.stringify(goods);
       ngoods.push(newgoods);
     }
-    console.log(ngoods);
+    // console.log(ngoods);
     await this.model('order_goods').addMany(ngoods);
-    console.log(data);
+    // console.log(data);
     // 减少订单中商品的库存
     await this.model('cmswing/order').stock(order_id, true);
 

@@ -322,7 +322,7 @@ module.exports = class extends think.Controller {
     var end = parseInt(size) + parseInt(start);
     /* 获取文件列表 */
     path = path.substr(0, path.lastIndexOf('/'));
-    console.log(path);
+    // console.log(path);
     var files = this.scanFolder(path).files;
     if (files.length == 0) {
       return {

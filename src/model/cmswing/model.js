@@ -9,7 +9,7 @@ module.exports = class extends think.Model {
   async del(id) {
     let table_name;
     const model = await this.field('name,extend').find(id);
-    console.log(model);
+    // console.log(model);
     if (model.extend == 0) {
       table_name = think.config('model.mysql.prefix') + model.name.toLowerCase();
     } else if (model.extend == 1) {
@@ -18,7 +18,7 @@ module.exports = class extends think.Model {
       // think.fail("只支持删除文档模型和独立模型");
       return false;
     }
-    console.log(table_name);
+    // console.log(table_name);
     // 删除属性数据
     await this.model('attribute').where({model_id: id}).delete();
     // 删除模型数据

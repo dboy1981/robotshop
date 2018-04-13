@@ -56,7 +56,7 @@ module.exports = class extends think.Model {
             setting = JSON.parse(v.setting);
             setting[0].width = space.width;
             setting[0].height = space.height;
-            console.log(setting);
+            // console.log(setting);
             jsonarr.push(setting[0]);
             json = JSON.stringify(jsonarr);
             const reparr = [];
@@ -65,7 +65,7 @@ module.exports = class extends think.Model {
               const param = val.split('|');
               // console.log(param);
               if (param[0] == 'url') {
-                console.log(22222222222);
+                // console.log(22222222222);
                 if (think.isEmpty(setting[0].url)) {
                   reparr.push('javascript:void(0)');
                 } else {
@@ -77,7 +77,7 @@ module.exports = class extends think.Model {
                 reparr.push(setting[0][param[0]]);
               }
             }
-            console.log(reparr);
+            // console.log(reparr);
             const loopstr = str_replace(loopmatch, reparr, loop[1]);
             looparr.push(loopstr);
           }

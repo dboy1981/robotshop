@@ -63,7 +63,7 @@ module.exports = class extends think.cmswing.admin {
     // console.log(datalist);
     for (const v of datalist) {
       const table = await this.model('cmswing/model').get_table_name(v.model, true);
-      console.log(table);
+      // console.log(table);
       let res = null;
       switch (table.extend) {
         case 0:

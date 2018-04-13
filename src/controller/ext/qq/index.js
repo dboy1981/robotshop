@@ -137,7 +137,7 @@ module.exports = class extends think.cmswing.extIndex {
         await this.spiderImage(data.headimgurl, filePath + '/avatar.png');
       }
     }
-    console.log(data);
+    // console.log(data);
     await this.model('cmswing/member').autoLogin({id: reg}, this.ip);// 更新用户登录信息，自动登陆
     const wx_userInfo = {
       'uid': reg,
@@ -154,7 +154,7 @@ module.exports = class extends think.cmswing.extIndex {
     const username = this.post('username');
     let password = this.post('password');
     password = encryptPassword(password);
-    console.log(data);
+    // console.log(data);
 
     const res = await this.model('cmswing/member').signin(username, password, this.ip, 5, 0);
     if (res.uid > 0) {

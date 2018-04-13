@@ -50,7 +50,7 @@ module.exports = class extends think.cmswing.extIndex {
     // let result ={ err_code: '0',
     //     model: '102201717069^1102848633337',
     //     success: true }
-    console.log(result);
+    // console.log(result);
     // 发送成功记录到数据库
     if (result.result.err_code == 0) {
       await this.model('ext_smslog').add({

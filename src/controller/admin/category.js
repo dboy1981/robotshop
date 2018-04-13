@@ -200,7 +200,7 @@ module.exports = class extends think.cmswing.admin {
       this.assign('models', model);
       if (info.mold == 1) {
         const mod = await this.model('cmswing/model').get_model(info.model);
-        console.log(mod);
+        // console.log(mod);
         this.assign('mod', mod);
       } else {
         this.assign('mod', {temp_show: 1,
@@ -493,7 +493,7 @@ module.exports = class extends think.cmswing.admin {
       return this.success({name: '成功！', url: '/admin/category/index'});
     } else {
       const data = this.get();
-      console.log(data);
+      // console.log(data);
       const source = await this.model('category').find(data.source);
       const target = await this.session('ntarget');
       this.assign({

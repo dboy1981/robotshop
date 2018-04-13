@@ -237,7 +237,7 @@ module.exports = class extends think.cmswing.center {
     const code = this.get();
 
     // orderId: '1458722092073', respMsg: 'success'
-    console.log(code);
+    // console.log(code);
     // 站内支付回掉
     if (code.c_o_id) {
       const order = await this.model('order').find(code.c_o_id);

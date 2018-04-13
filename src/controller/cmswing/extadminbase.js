@@ -177,7 +177,7 @@ module.exports = class extends Admin {
     } else {
       const id = this.get('id');
       const type = await this.model('ext_type').where({typeid: id}).find();
-      console.log(type);
+      // console.log(type);
       this.assign('type', type);
       // 获取当前插件的分类
       this.meta_title = '修改类别';
@@ -309,7 +309,7 @@ module.exports = class extends Admin {
     data.installtime = new Date().getTime();
     // console.log(data);
     delete data.setting;
-    console.log(data);
+    // console.log(data);
     // 导入数据
     await this.model('ext').where({ext: ext}).update(data);
     // 卸载钩子
