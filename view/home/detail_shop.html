@@ -228,7 +228,7 @@
               <div class="car_related">
             <h3 class="sub_title">更多推荐</h3>
                 <div id="portfolio_filter_wrapper" class="gallery classic three_cols portfolio-content section content clearfix" data-columns="3">
-                {%topic data="moregoods",limit="3",isstu=1,type="hot",where="{\"id\":[\"<>\", " + info.id + "]}",cache="1000"%}
+                {%topic data="moregoods",cid="" + category.id + "",limit="3",isstu=1,type="hot",where="{\"id\":[\"<>\", " + info.id + "]}",cache="1000"%}
                 {%- for item in moregoods %}
                 {% set pic = item.pics|strToArray%}
                     <div class="element grid classic3_cols">
