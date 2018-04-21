@@ -8189,3 +8189,17 @@ body.ppb_enable .car_recently_view
 	font-weight: 700;
 }
 
+.woocommerce-cart .wc-proceed-to-checkout
+{
+	padding: 2em 0;
+}
+
+#add_payment_method .wc-proceed-to-checkout a.checkout-button, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button, .woocommerce-checkout .wc-proceed-to-checkout a.checkout-button
+{
+	font-size: 15px;
+	border-radius: 5px;
+	margin-bottom: 0;
+	display: inline-block;
+	padding: .6em 1.5em .7em 1.5em;
+	float: right;
+}
