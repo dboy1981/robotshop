@@ -76,19 +76,19 @@
                                                         <div class="one_fourth">
                                     <div class="car_attribute_icon ti-user"></div>
                                     <div class="car_attribute_content">
-                                    5&nbsp;Passengers								</div>
+                                    {{info.weight}}								</div>
                                 </div>
                                                     
                                                         <div class="one_fourth">
-                                    <div class="car_attribute_icon ti-briefcase"></div>
+                                    <div class="car_attribute_icon ti-package"></div>
                                     <div class="car_attribute_content">
-                                        4&nbsp;Luggages								</div>
+                                        {{info.chichun}}							</div>
                                 </div>
                                                     
                                                         <div class="one_fourth">
                                     <div class="car_attribute_icon ti-panel"></div>
                                     <div class="car_attribute_content">
-                                        Auto								</div>
+                                        ¥{{item.price|get_price_format('1')}}									</div>
                                 </div>
                                                     
                                                         <div class="one_fourth last">
