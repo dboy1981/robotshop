@@ -27,18 +27,20 @@ module.exports = class extends think.cmswing.center {
       name: info.title,
       goods_brief: info.description,
       retail_price: info.zujin,
-      goods_desc: info.content
+      goods_desc: info.content,
+      yajin: info.yajin,
+      shortest: info.shortest
     };
 
     data.gallery = [];
     for(var picid of info.pics.split(',')){
       data.gallery.push({
         id: picid,
-        image_url: await get_pic(picid, 1, 128, 128)
+        img_url: await get_pic(picid, 1, 128, 128)
       })
     }
 
-    data.brand = {};
+    data.brand = {name:'xxx',brandId:111};
 
     data.attribute = [
       {name:'重量', value:info.weight + 'kg'},
