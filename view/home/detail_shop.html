@@ -74,29 +74,29 @@
                     </div>
                                                         <div class="single_car_attribute_wrapper themeborder">
                                                         <div class="one_fourth">
-                                    <div class="car_attribute_icon ti-user"></div>
+                                    
                                     <div class="car_attribute_content">
-                                    {{info.weight}}								</div>
+                                    重量：{{info.weight}}								</div>
                                 </div>
                                                     
                                                         <div class="one_fourth">
-                                    <div class="car_attribute_icon ti-package"></div>
+                                    {#<div class="car_attribute_icon ti-package"></div>#}
                                     <div class="car_attribute_content">
-                                        {{info.chichun}}							</div>
+                                        体积：{{info.chichun}}							</div>
                                 </div>
                                                     
                                                         <div class="one_fourth">
-                                    <div class="car_attribute_icon ti-panel"></div>
+                                    
                                     <div class="car_attribute_content">
-                                        ¥{{item.price|get_price_format('1')}}									</div>
+                                        售价：{{item.price|get_price_format('1')}}									</div>
                                 </div>
                                                     
-                                                        <div class="one_fourth last">
+                                                        {#<div class="one_fourth last">
                                     <div class="car_attribute_icon ti-car"></div>
                                     <div class="car_attribute_content">
                                         5&nbsp;
                                         Doors								</div>
-                                </div>
+                                </div>#}
                                                 </div><br class="clear"/>
                                         <div class="single_car_content">
                                                 {{content(pagehook)}}

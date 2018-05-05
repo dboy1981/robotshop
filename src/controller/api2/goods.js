@@ -48,6 +48,21 @@ module.exports = class extends think.cmswing.center {
       {name:'售价', value:'¥' + get_price_format(info.price, 1)}
     ];
 
+    data.specificationList = [
+      {
+        specification_id:1,
+        name:'选择租期',
+        valueList:[
+          {
+            specification_id:1,
+            id:1,
+            value:1
+          }
+        ]
+      }
+    ];
+
+
     return this.success(data);
   }
 

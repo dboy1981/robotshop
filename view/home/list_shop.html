@@ -56,7 +56,7 @@
                                 {% for item in list%}
                                 {% set pic = item.pics|strToArray%}
                                 <div class="element grid classic2_cols animated2">
-                                        <div class="one_half gallery2 grid static filterable portfolio_type themeborder" data-id="post-2" style="background-image:url({{pic[0]|get_pic('m=1,w=260,h=260')}});">
+                                        <div class="one_half gallery2 grid static filterable portfolio_type themeborder" data-id="post-2" style="background-image:url({{pic[0]|get_pic('m=2,w=260,h=260')}});">
                                           <a class="car_image" href="{{item.name|get_url(item.id)}}"></a>
                                           <div class="portfolio_info_wrapper">
                                             <div class="car_attribute_wrapper">
@@ -115,7 +115,7 @@
                         {%- for item in items %}
                         {% set pic = item.pics|strToArray%}
                           <li>
-                            <div class="post_circle_thumb"><a href="{{item.name|get_url(item.id)}}"><img class="alignleft frame post_thumb" src="{{pic[0]|get_pic('m=1,w=150,h=150')}}" alt="{{item.title}}" /></a></div><a href="{{item.name|get_url(item.id)}}">{{item.title}}</a>
+                            <div class="post_circle_thumb"><a href="{{item.name|get_url(item.id)}}"><img class="alignleft frame post_thumb" src="{{pic[0]|get_pic('m=2,w=150,h=150')}}" alt="{{item.title}}" /></a></div><a href="{{item.name|get_url(item.id)}}">{{item.title}}</a>
                             <div class="post_attribute">{{item.zujin|formatCurrency}}元/天</div>
                           </li>
                           {%- endfor %}
