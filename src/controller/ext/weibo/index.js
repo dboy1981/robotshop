@@ -29,7 +29,7 @@ module.exports = class extends think.cmswing.extIndex {
     } else {
       http_ = 'https://';
     }
-    const redirectURI = `${http_}${this.ctx.host}/ext/weibo/index/index`;
+    const redirectURI = `${http_}$qzuji.com/ext/weibo/index/index`;
     // 检查是否回掉code，如果没有跳转授权接口
     if (think.isEmpty(this.get('code'))) {
       return this.redirect(`https://api.weibo.com/oauth2/authorize?client_id=${this.config('ext.weibo.appkey')}&redirect_uri=${redirectURI}&response_type=code`);

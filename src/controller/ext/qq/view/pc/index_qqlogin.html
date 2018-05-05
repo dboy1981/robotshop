@@ -1,7 +1,15 @@
-{% extends "view/center/inc/base.html" %} 
+{% extends "view/center/inc/base.html" %}
+
 {% block style%}
-{% extends "view/center/inc/bootstrapheader.html" %}
+<link href="/static/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<style>
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: transparent;
+}
+</style>
 {% endblock %}
+
 {% block content %}
 <div id="page_caption" class="hasbg parallax  withtopbar  " style="height:300px;background-image:url(http://p4szpsplk.bkt.clouddn.com/1920x630_meitu_2.jpg);">
 	<div class="page_title_wrapper">
@@ -131,7 +139,7 @@
 						<div class="form-group">
 							<label>账号</label>
 
-							<input type="text" required="" placeholder="邮箱/手机号/昵称" class="form-control" name="username">
+							<input type="text" required="" placeholder="手机号" class="form-control" name="username">
 
 						</div>
 						<div class="form-group">
@@ -142,9 +150,6 @@
 								<a class="pull-right" href="#">忘记密码?</a>
 							</div>
 						</div>
-						<div class="form-group hide"> <div id="captcha"></div>
-							<p class="show" id="wait">正在加载验证码......</p>
-							<p class="hide" id="notice">请先拖动验证码到相应位置</p></div>
 						<div id="alert"></div>
 						<div class="row">
 
