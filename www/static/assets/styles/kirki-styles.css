@@ -272,7 +272,8 @@ body.tg_boxed {
 }
 
 #page_caption.hasbg {
-  height: 600px;
+  height: 300px;
+  margin-top:43px;
 }
 
 #page_caption {
