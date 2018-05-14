@@ -5,7 +5,12 @@
 
 <link rel="stylesheet"  href="/static/assets/plugins/fancybox/jquery.fancybox.min.css" />
 
-
+<style>
+.single_car_content p img{
+    outline-width:0px;
+    vertical-align:top;
+}
+</style>
 {% endblock %}
 {% block content %}
 {% set pic = info.pics|strToArray%}
