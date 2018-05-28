@@ -3092,6 +3092,10 @@ function _pingpp() {
             } else if (res.data.url) {
               window.location.href = res.data.url;
             } else if (res.data.data) {
+              if(res.data.data.alipay_url){
+                window.location.href = res.data.data.alipay_url;
+                return;
+              }
               _toastr(res.data.name, 'top-right', 'success', false);
 
               pingpp.createPayment(res.data.data, function(result, err) {

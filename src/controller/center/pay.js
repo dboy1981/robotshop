@@ -103,13 +103,21 @@ module.exports = class extends think.cmswing.center {
           if (channel == 'wx_pub') {
             open_id = await this.session('wx_openid');
           }
-          // 调用ping++ 服务端
-          payment = think.service('cmswing/payment', this.ctx);
-          // 传入 channel,order_no,order_amount,this.ip
-          const ip = think.env === 'development' ? '127.0.0.1' : this.ip;
-          charges = await payment.pingxx(channel, order.order_no, order.order_amount, ip, open_id);
-          // 把pingxx_id存到订单
-          await this.model('order').where({id: post.order_id}).update({pingxx_id: charges.id});
+          
+          if(channel == 'alipay_pc_direct'){
+            payment = think.service('cmswing/alipay', this.ctx);
+            charges = {};
+            charges.alipay_url = await payment.createPayUrl(channel, this.config('setup.WEB_SITE_TITLE'), this.config('setup.WEB_SITE_TITLE'), order.order_no, Number(order.order_amount));
+          }else{
+            // 调用ping++ 服务端
+            payment = think.service('cmswing/payment', this.ctx);
+            // 传入 channel,order_no,order_amount,this.ip
+            const ip = think.env === 'development' ? '127.0.0.1' : this.ip;
+            charges = await payment.pingxx(channel, order.order_no, order.order_amount, ip, open_id);
+            // 把pingxx_id存到订单
+            await this.model('order').where({id: post.order_id}).update({pingxx_id: charges.id});
+          }
+          
         } else {
           // console.log(33333333);
           // 调用ping++ 服务端
