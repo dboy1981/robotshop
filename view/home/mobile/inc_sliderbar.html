@@ -14,13 +14,18 @@
             <a class="mui-control-item bar-item {%if order ==2%} mui-active{%endif%}" href="#item2mobile" data-url="/index/2">
                 热点
             </a>
-            {% column data="bar",isapp="0"%}
-            {%for v in bar%}
-            <a class="mui-control-item bar-item {%if breadcrumb[0].id ==v.id%} mui-active{%endif%}" href="#item{{v.id}}"  data-url="{{v.url}}">
-                {{v.name}}
+            <a class="mui-control-item bar-item {%if order ==3%} mui-active{%endif%}" href="#item3mobile" data-url="/mall">
+                商城
             </a>
-            {%endfor%}
-
+            <a class="mui-control-item bar-item {%if order ==4%} mui-active{%endif%}" href="#item4mobile" data-url="/discovery">
+                发现
+            </a>
+            <a class="mui-control-item bar-item {%if order ==4%} mui-active{%endif%}" href="#item4mobile" data-url="/community">
+                解决方案
+            </a>
+            <a class="mui-control-item bar-item {%if order ==5%} mui-active{%endif%}" href="#item5mobile" data-url="/help">
+                帮助
+            </a>
         </div>
     </div>
     <div class="mui-slider-group " style="height: 0px;" >

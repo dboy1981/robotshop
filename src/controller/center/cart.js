@@ -113,6 +113,7 @@ module.exports = class extends think.cmswing.center {
       for (const item of cart) {
         if ((item.type == data.type) && (item.product_id == data.product_id)) {
           item.qty = Number(item.qty) + Number(data.qty);
+          item.days = Number(item.days) + Number(data.days);
         }
         arr.push(item);
         idarr.push(item.product_id);

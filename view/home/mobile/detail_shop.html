@@ -1,6 +1,7 @@
 {% extends "./inc_base.html" %}
 {% block style%}
 <link rel="stylesheet" href="/static/mobile/libs/icheck/icheck.css">
+<link rel="stylesheet" href="/static/assets/plugins/jquery-daterangepicker/daterangepicker.min.css">
 <style>
     html,
     body {
@@ -140,7 +141,7 @@
                 <div class="mui-table-cell ">
                     <h4 class="mui-ellipsis-2 mui-col-xs-12">{{info.title}}</h4>
                     <div class="mui-row">
-                        <h5 class="mui-col-xs-9"><strong class="bg-danger padding-3 size-14" style="color: #e4393c">¥ <span style="color: #e4393c;font-size: 21px;line-height: 33px">{{info.price|get_price_format('1')}}</span></strong></h5>
+                        <h5 class="mui-col-xs-9"><strong class="bg-danger padding-3 size-14" style="color: #e4393c"><span style="color: #e4393c;font-size: 21px;line-height: 33px">{{info.zujin|formatCurrency}}元/天</span></strong></h5>
                         <p class="mui-col-xs-3"><button type="button" class="mui-btn mui-pull-right">降价通知
                         </button></p>
                     </div>
@@ -183,18 +184,34 @@
         <li class="mui-table-view-cell sku-group">
 
             <dl>
+                <dt>押金：</dt>
+                <dd>¥ {{info.yajin}}</dd>
+            </dl>
+            <dl>
                 <dt>运费：</dt>
                 <dd>¥ 0.00~25.00</dd>
             </dl>
             <dl>
-                <dt>销量：</dt>
-                <dd>1 </dd>
+                <dt>最短租期：</dt>
+                <dd><span id="shortest">{{info.shortest}}</span> 天</dd>
             </dl>
 
 
         </li>
 
     </ul>
+
+    <ul class="mui-table-view margin-top-10">
+        <li class="mui-table-view-cell sku-group">
+            <div class="mui-input-row">
+                <label>租期</label>
+                <div style="width:238px;display:inline-block">
+                    <span class="wpcf7-form-control-wrap pickup-date"><input id="pickup-date" type="text" name="pickup-date" value="mm/dd/yyyy" class="wpcf7-form-control wpcf7-date wpcf7-validates-as-required wpcf7-validates-as-date" aria-required="true" aria-invalid="false" /></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
     <ul class="mui-table-view margin-top-10">
         {%if info.suk =="" %}
         <li class="mui-table-view-cell sku-group">
@@ -250,6 +267,7 @@
 </div>
 <input type="hidden" name="product_id" value="{{info.id}}" />
 <input type="hidden" id="type" name="type" value="" />
+<input type="hidden" id="days" name="days" value="{{info.shortest}}" />
 <div id="addcart" class="mui-modal"  data-icheck-info ="{{info.suk}}">
 
     <ul class="mui-table-view"  >
@@ -341,7 +359,31 @@
 {% block script %}
 <script src="/static/admin/js/jquery.min.js"></script>
 <script src="/static/mobile/libs/icheck/icheck.min.js"></script>
+<script type="text/javascript" src="/static/assets/plugins/bootstrap.daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="/static/assets/plugins/jquery-daterangepicker/jquery.daterangepicker.min.js"></script>
 <script type="text/javascript">
+    var shortest = Number($('#shortest').html());
+    var start = moment().add(1, 'days');
+    var end = moment().add(shortest + 1, 'days');
+    
+
+    function cb(start, end) {
+        $('#pickup-date').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
+        $('#days').val(Math.ceil(end.diff(start) / (1000 * 3600 * 24)) + 1);
+    }
+
+    $('#pickup-date').dateRangePicker({
+        startDate:start.format('YYYY-MM-DD'),
+        minDays:shortest,
+        language:'cn'
+    }).bind('datepicker-change',function(event,obj)
+    {
+        //console.log(obj);
+        cb(moment(obj.date1), moment(obj.date2))
+    })
+
+    cb(start, end);
+    
 
     mui.init({
         swipeBack: true //启用右滑关闭功能
@@ -548,7 +590,8 @@
                 var str={
                     product_id:$("input[name='product_id']").val(),
                     qty:$("#qty").val(),
-                    type:$("#type").val()
+                    type:$("#type").val(),
+                    days:$("#days").val()
                 }
                 mui.post('/center/cart/addcart',str,function(msg){
                         //服务器返回响应，根据响应结果，分析是否登录成功；

@@ -138,6 +138,7 @@ module.exports = class extends think.Controller {
             val.id = res[0].id;
             await this.model('cart').update(val);
           } else {
+            if(!val.days) val.days = 1;
             await this.model('cart').add(val);
           }
         }

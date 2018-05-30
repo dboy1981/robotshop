@@ -81,7 +81,7 @@
                         {%endif%}
 
                         </p>
-                        <p class="mui-ellipsis"><span >单价: ¥{{val.unit_price|formatCurrency}}</span>  <span class="item-title label  size-14">数量: {{val.qty}}</span>
+                        <p class="mui-ellipsis"><span >{{val.zujin|formatCurrency}} 元/天</span> <span class="item-title label  size-14">租期: {{val.days}} 天</span> <span class="item-title label  size-14">数量: {{val.qty}}</span>
                             <span class="stock">{%if val.stock > 0%}<span class="original">有货</span> {%else%}<span class="original">无货</span>{%endif%}</span>
                             </p>
                         <p class="mui-ellipsis">

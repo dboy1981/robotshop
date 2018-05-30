@@ -87,7 +87,9 @@
                         <p class="mui-h6 mui-ellipsis">{% if val.type%}
                             <small>{{val.type}}</small>
                             {%endif%}</p>
-                        <p class=""><span class="price" data-price ="{{val.price}}" >¥{{val.unit_price|formatCurrency}}</span> <span class="stock">{%if val.stock > 0%}<span class="original">有货</span> {%else%}<span class="original">无货</span>{%endif%}</span></p>
+                        <p class=""><span class="price" data-price ="{{val.zujin}}" >{{val.zujin|formatCurrency}}元/天</span> <span class="stock">{%if val.stock > 0%}<span class="original">有货</span> {%else%}<span class="original">无货</span>{%endif%}</span></p>
+                        <p class=""><span class="yajin" data-price ="{{val.yajin}}" >押金 {{val.yajin|formatCurrency}} 元</span> </p>
+                        <p class=""><span class="days" data-price ="{{val.days}}" >租期 {{val.days}} 天</span> </p>
                         <div class="mui-numbox margin-top-3" data-numbox-min='1' >
                             <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
                             <input class="mui-input-numbox number" type="number" value="{{val.qty}}"  />
@@ -179,7 +181,7 @@
             console.log($(v).prop("checked"));
             if(c){
                 nums.push($(v).parents("li").find("input.number").val());
-                total =total + Number($(v).parents("li").find("span.price").attr("data-price"));
+                total =total + Number($(v).parents("li").find("div.price").attr("data-price"));
                 url.push($(v).parents("li").find('input[name="ids"]').data("val"))
                 console.log(nums)
             }
@@ -231,7 +233,7 @@
             data:{qty:step,ids:ids},
             success:function (res) {
                 if(res.errno == 0){
-                    $(self).parents("li").find("span.price").attr("data-price",res.data.data.price)
+                    $(self).parents("li").find("div.price").attr("data-price",res.data.data.price)
                     $(self).parents("li").find("span.stock").html('<span class="original">有货</span>')
                     $(self).parents("li").find("span.inform").html('');
                     $(self).parents("li").find("div.price>strong").html(formatCurrency(res.data.data.price));
