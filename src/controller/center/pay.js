@@ -104,7 +104,7 @@ module.exports = class extends think.cmswing.center {
             open_id = await this.session('wx_openid');
           }
           
-          if(channel == 'alipay_pc_direct'){
+          if(channel == 'alipay_pc_direct' || channel == 'alipay_wap'){
             payment = think.service('cmswing/alipay', this.ctx);
             charges = {};
             charges.alipay_url = await payment.createPayUrl(channel, this.config('setup.WEB_SITE_TITLE'), this.config('setup.WEB_SITE_TITLE'), order.order_no, Number(order.order_amount));
