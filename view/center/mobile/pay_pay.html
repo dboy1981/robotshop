@@ -89,7 +89,7 @@
         falg = true;
         mui.post("/center/pay/pay",{order_id:order_id,payment:payment},function(data){
             if (data.errno!=1000) {
-                if (data.data.url) {
+                if (data.data.url || data.data.data.alipay_url) {
                     mui.toast(data.data.name + ' 即将跳转~');
                 }else if(data.data.data){
                     mui.toast(data.data.name);
@@ -113,8 +113,8 @@
                 setTimeout(function(){
                     $(that).removeClass('disabled').prop('disabled',false);
                     falg=false;
-                    if (data.data.url) {
-                        mui.openWindow({url: data.data.url})
+                    if (data.data.url || data.data.data.alipay_url) {
+                        mui.openWindow({url: data.data.url || data.data.data.alipay_url})
                     }
                 },1500);
             }else{
