@@ -26,6 +26,8 @@ module.exports = class extends think.cmswing.center {
     var payment = think.service('cmswing/alipay', this.ctx);
 
     if (!payment.isValidNotifySign(data)) {
+      console.log(data);
+      console.log('failure');
       return this.ctx.body = 'failure';
     }
 
