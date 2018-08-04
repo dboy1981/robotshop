@@ -106,7 +106,6 @@ module.exports = class extends think.Controller {
         case 0:
           // this.fail('该分类禁止显示')
           return error.noAction('该分类禁止显示！');
-          break;
           // TODO:更多分类显示状态判断
         default:
 

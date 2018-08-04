@@ -97,7 +97,7 @@ module.exports = class extends think.cmswing.center {
     if (data.qty > stock) {
       return this.json(false);
     }
-    // console.log(data);
+    console.log(data);
     // return false;
     const arr = [];
     const cart = this.cart.data;

@@ -24,6 +24,7 @@ module.exports = class extends think.cmswing.center {
     let data = {};
 
     data.info = {
+      id: info.id,
       name: info.title,
       goods_brief: info.description,
       retail_price: info.zujin,
